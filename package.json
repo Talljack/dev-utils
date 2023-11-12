@@ -1,5 +1,5 @@
 {
-  "name": "tauri-react-template",
+  "name": "dev-utils",
   "version": "0.0.1",
   "packageManager": "bun@1.0.10",
   "type": "module",

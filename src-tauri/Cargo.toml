@@ -1,11 +1,11 @@
 [package]
-name = "app"
+name = "dev-utils"
 version = "0.1.0"
-description = "A Tauri App"
+description = "Utils for developers"
 authors = ["you"]
 license = ""
 repository = ""
-default-run = "app"
+default-run = "dev-utils"
 edition = "2021"
 rust-version = "1.60"
 
@@ -15,9 +15,9 @@ rust-version = "1.60"
 tauri-build = { version = "1.5.0", features = [] }
 
 [dependencies]
-serde_json = "1.0"
-serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.5.2", features = [] }
+serde_json = "1.0.107"
+serde = { version = "1.0.192", features = ["derive"] }
+tauri = { version = "1.5.2", features = [ "app-hide", "app-show", "http-request", "global-shortcut-all", "path-all", "os-all", "notification-all", "clipboard-all", "fs-copy-file", "fs-read-dir", "dialog-open", "fs-exists"] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

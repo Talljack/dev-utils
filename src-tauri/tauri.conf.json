@@ -7,12 +7,57 @@
     "distDir": "../build"
   },
   "package": {
-    "productName": "demo",
+    "productName": "Dev Utils",
     "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "dialog": {
+        "all": false,
+        "ask": false,
+        "confirm": false,
+        "message": false,
+        "open": true,
+        "save": false
+      },
+      "fs": {
+        "all": false,
+        "copyFile": true,
+        "createDir": false,
+        "exists": true,
+        "readDir": true
+      },
+      "http": {
+        "all": false,
+        "request": true,
+        "scope": ["https://api.openai.com/*"]
+      },
+      "notification": {
+        "all": true
+      },
+      "globalShortcut": {
+        "all": true
+      },
+      "os": {
+        "all": true
+      },
+      "clipboard": {
+        "all": true
+      },
+      "app": {
+        "all": false,
+        "hide": true,
+        "show": true
+      },
+      "path": {
+        "all": true
+      },
+      "protocol": {
+        "all": false,
+        "asset": false,
+        "assetScope": ["http://*/*", "https://*/*"]
+      }
     },
     "bundle": {
       "active": true,
@@ -55,10 +100,10 @@
     },
     "windows": [
       {
-        "fullscreen": false,
+        "fullscreen": true,
         "height": 600,
         "resizable": true,
-        "title": "Tauri App",
+        "title": "Dev Utils",
         "width": 800
       }
     ]
