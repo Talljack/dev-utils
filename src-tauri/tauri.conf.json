@@ -106,6 +106,10 @@
         "title": "Dev Utils",
         "width": 800
       }
-    ]
+    ],
+    "systemTray": {
+      "iconAsTemplate": true,
+      "iconPath": "icons/128x128.png"
+    }
   }
 }
