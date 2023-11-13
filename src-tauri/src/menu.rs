@@ -1,4 +1,5 @@
-use tauri::{utils::assets::EmbeddedAssets, Context, Menu};
+use tauri::{utils::assets::EmbeddedAssets, Context, Menu, CustomMenuItem, WindowMenuEvent};
+use tauri::api::dialog::message;
 
 pub fn build_menu(context: &Context<EmbeddedAssets>) -> Menu {
   // get the app name from the tauri.conf.json package
@@ -33,9 +34,15 @@ Menu::new()
       .add_native_item(MenuItem::Separator)
       .add_native_item(MenuItem::SelectAll)
     );
+    let custom_menu = Submenu::new(
+      "Custom",
+      Menu::new()
+        .add_item(CustomMenuItem::new("custom-id".to_string(), "Custom"))
+    );
     Menu::new()
       .add_submenu(app_menu)
       .add_submenu(operation_menu)
+      .add_submenu(custom_menu)
   }
   // {
   //   use tauri::SystemTrayMenu;
@@ -49,4 +56,19 @@ Menu::new()
     Menu::new()
   }
 
+}
+
+
+
+pub fn handler_menu(event: WindowMenuEvent) {
+  let window = Some(event.window());
+  // let app = event.window().app_handle();
+  match event.menu_item_id() {
+      "custom-id" => {
+          message(window, "Custom menu item clicked!", "Custom menu item clicked!");
+      },
+      _ => {
+        println!("other")
+      }
+  }
 }
