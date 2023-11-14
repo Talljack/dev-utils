@@ -12,7 +12,9 @@
     "lint": "eslint . --cache --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "format": "prettier --cache --write \"src/**/*.{ts,tsx,json,css,scss,md}\"",
-    "postinstall": "simple-git-hooks"
+    "postinstall": "simple-git-hooks",
+    "release": "node scripts/release.mjs",
+    "updater": "node scripts/updater.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.5.1",
@@ -25,6 +27,7 @@
     "simple-git-hooks": "^2.9.0"
   },
   "devDependencies": {
+    "@actions/github": "^6.0.0",
     "@tauri-apps/cli": "^1.5.6",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
@@ -36,6 +39,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react-refresh": "^0.4.4",
     "lint-staged": "^15.0.2",
+    "node-fetch": "^3.3.2",
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^3.2.3",
