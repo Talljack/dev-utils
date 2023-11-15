@@ -21,7 +21,9 @@ module.exports = {
       {
         additionalHooks: '(useMyCustomHook|useMyOtherCustomHook)'
       }
-    ]
+    ],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off'
   },
   settings: {
     react: {
