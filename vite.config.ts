@@ -1,5 +1,6 @@
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { defineConfig } from 'vite'
+import svgr from 'vite-plugin-svgr'
 import viteTsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
@@ -20,7 +21,7 @@ export default defineConfig({
     'TAURI_PLATFORM_TYPE',
     'TAURI_DEBUG'
   ],
-  plugins: [reactRefresh(), viteTsconfigPaths()],
+  plugins: [reactRefresh(), viteTsconfigPaths(), svgr()],
   build: {
     // Tauri uses Chromium on Windows and WebKit on macOS and Linux
     target: process.env.TAURI_PLATFORM == 'windows' ? 'chrome105' : 'safari13',
