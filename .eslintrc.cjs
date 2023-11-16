@@ -14,7 +14,7 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   ignorePatterns: ['node_modules/', 'build/', 'dist/', './.eslintrc.js'],
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'react-hooks'],
   rules: {
     'react-hooks/exhaustive-deps': [
       'warn',
@@ -23,7 +23,9 @@ module.exports = {
       }
     ],
     'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'react/no-unknown-property': 'off',
+    'react-hooks/rules-of-hooks': 'error'
   },
   settings: {
     react: {

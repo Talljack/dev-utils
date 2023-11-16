@@ -4,7 +4,8 @@
     "beforeBuildCommand": "bun run build",
     "beforeDevCommand": "bun run dev",
     "devPath": "http://localhost:5173",
-    "distDir": "../build"
+    "distDir": "../build",
+    "withGlobalTauri": true
   },
   "package": {
     "productName": "Dev Utils",
@@ -43,7 +44,9 @@
         "all": true
       },
       "clipboard": {
-        "all": true
+        "all": true,
+        "writeText": true,
+        "readText": true
       },
       "app": {
         "all": false,
