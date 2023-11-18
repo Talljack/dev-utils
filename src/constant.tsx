@@ -4,7 +4,7 @@ import React from 'react'
 export const utilMap: UtilItem[] = [
   {
     name: 'JSON Formatter/Validate',
-    path: '/util/json-formatter',
+    path: '/utils/json-formatter',
     paramId: 'json-formatter',
     icon: <JsonFormatter />
   }

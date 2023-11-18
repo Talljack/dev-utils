@@ -1,13 +1,12 @@
-import Layout from '@/components/Layout'
+import { Toaster } from '@/components/ui/toaster'
 import router from '@/router'
 import React from 'react'
 import { RouterProvider } from 'react-router-dom'
 function App() {
   return (
     <div className="flex h-screen">
-      <Layout>
-        <RouterProvider router={router}></RouterProvider>
-      </Layout>
+      <RouterProvider router={router}></RouterProvider>
+      <Toaster />
     </div>
   )
 }
