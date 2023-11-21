@@ -4,12 +4,15 @@
   "packageManager": "bun@1.0.10",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev:fe": "vite",
+    "build:fe": "tsc && vite build",
     "serve": "vite preview",
-    "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "release": "tr release --git",
     "updater": "tr updater",
+    "tr": "tr",
+    "fmt:rs": "cargo fmt",
     "check": "tsc --incremental --noEmit && rm -f tsconfig.tsbuildinfo",
     "lint": "eslint . --cache --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix",
@@ -42,6 +45,7 @@
   "devDependencies": {
     "@actions/github": "^6.0.0",
     "@tauri-apps/cli": "^1.5.6",
+    "@tauri-release/cli": "^0.2.5",
     "@types/lodash-es": "^4.17.11",
     "@types/node": "^20.9.0",
     "@types/prettier": "^3.0.0",
@@ -76,11 +80,11 @@
   },
   "lint-staged": {
     "src/*.{js,json,md,css,scss}": [
-      "prettier --cache --write"
+      "prettier --write"
     ],
     "src/*.ts?(x)": [
-      "eslint --cache --fix",
-      "prettier --cache --parser=typescript --write"
+      "eslint",
+      "prettier --parser=typescript --write"
     ]
   }
 }

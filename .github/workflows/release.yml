@@ -6,7 +6,7 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  build-chatgpt:
+  build-dev-utils:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -66,11 +66,6 @@ jobs:
       - name: Install rust target
         run: rustup target add ${{ matrix.target }}
 
-      - name: fix tray icon
-        if: matrix.os != 'macos-latest'
-        run: |
-          pnpm fix:tray
-
       - run: pnpm build --target ${{ matrix.target }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -100,8 +95,8 @@ jobs:
           path: |
             ./target/${{ matrix.target }}/release/bundle/msi/**
 
-  release-chatgpt:
-    needs: build-chatgpt
+  release-dev-utils:
+    needs: build-dev-utils
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -123,21 +118,21 @@ jobs:
 
       - name: Rename artifacts
         run: |
-          mv "artifacts/aarch64/dmg/Dev Utils_${{ env.version }}_aarch64.dmg" "artifacts/Dev Utils_${{ env.version }}_macos_aarch64.dmg"
-          mv "artifacts/aarch64/macos/Dev Utils.app.tar.gz" "artifacts/Dev Utils_${{ env.version }}_macos_aarch64.app.tar.gz"
-          mv "artifacts/aarch64/macos/Dev Utils.app.tar.gz.sig" "artifacts/Dev Utils_${{ env.version }}_macos_aarch64.app.tar.gz.sig"
+          mv "artifacts/aarch64/dmg/DevUtils_${{ env.version }}_aarch64.dmg" "artifacts/DevUtils_${{ env.version }}_macos_aarch64.dmg"
+          mv "artifacts/aarch64/macos/DevUtils.app.tar.gz" "artifacts/DevUtils_${{ env.version }}_macos_aarch64.app.tar.gz"
+          mv "artifacts/aarch64/macos/DevUtils.app.tar.gz.sig" "artifacts/DevUtils_${{ env.version }}_macos_aarch64.app.tar.gz.sig"
 
-          mv "artifacts/x86_64/dmg/Dev Utils_${{ env.version }}_x64.dmg" "artifacts/Dev Utils_${{ env.version }}_macos_x86_64.dmg"
-          mv "artifacts/x86_64/macos/Dev Utils.app.tar.gz" "artifacts/Dev Utils_${{ env.version }}_macos_x86_64.app.tar.gz"
-          mv "artifacts/x86_64/macos/Dev Utils.app.tar.gz.sig" "artifacts/Dev Utils_${{ env.version }}_macos_x86_64.app.tar.gz.sig"
+          mv "artifacts/x86_64/dmg/DevUtils_${{ env.version }}_x64.dmg" "artifacts/DevUtils_${{ env.version }}_macos_x86_64.dmg"
+          mv "artifacts/x86_64/macos/DevUtils.app.tar.gz" "artifacts/DevUtils_${{ env.version }}_macos_x86_64.app.tar.gz"
+          mv "artifacts/x86_64/macos/DevUtils.app.tar.gz.sig" "artifacts/DevUtils_${{ env.version }}_macos_x86_64.app.tar.gz.sig"
 
-          mv "artifacts/x86_64/deb/chat-gpt_${{ env.version }}_amd64.deb" "artifacts/x86_64/deb/Dev Utils_${{ env.version }}_linux_x86_64.deb"
-          mv "artifacts/x86_64/appimage/chat-gpt_${{ env.version }}_amd64.AppImage.tar.gz" "artifacts/Dev Utils_${{ env.version }}_linux_x86_64.AppImage.tar.gz"
-          mv "artifacts/x86_64/appimage/chat-gpt_${{ env.version }}_amd64.AppImage.tar.gz.sig" "artifacts/Dev Utils_${{ env.version }}_linux_x86_64.AppImage.tar.gz.sig"
+          mv "artifacts/x86_64/deb/dev-utils_${{ env.version }}_amd64.deb" "artifacts/x86_64/deb/DevUtils_${{ env.version }}_linux_x86_64.deb"
+          mv "artifacts/x86_64/appimage/dev-utils_${{ env.version }}_amd64.AppImage.tar.gz" "artifacts/DevUtils_${{ env.version }}_linux_x86_64.AppImage.tar.gz"
+          mv "artifacts/x86_64/appimage/dev-utils_${{ env.version }}_amd64.AppImage.tar.gz.sig" "artifacts/DevUtils_${{ env.version }}_linux_x86_64.AppImage.tar.gz.sig"
 
-          mv "artifacts/x86_64/Dev Utils_${{ env.version }}_x64_en-US.msi" "artifacts/Dev Utils_${{ env.version }}_windows_x86_64.msi"
-          mv "artifacts/x86_64/Dev Utils_${{ env.version }}_x64_en-US.msi.zip" "artifacts/Dev Utils_${{ env.version }}_windows_x86_64.msi.zip"
-          mv "artifacts/x86_64/Dev Utils_${{ env.version }}_x64_en-US.msi.zip.sig" "artifacts/Dev Utils_${{ env.version }}_windows_x86_64.msi.zip.sig"
+          mv "artifacts/x86_64/DevUtils_${{ env.version }}_x64_en-US.msi" "artifacts/DevUtils_${{ env.version }}_windows_x86_64.msi"
+          mv "artifacts/x86_64/DevUtils_${{ env.version }}_x64_en-US.msi.zip" "artifacts/DevUtils_${{ env.version }}_windows_x86_64.msi.zip"
+          mv "artifacts/x86_64/DevUtils_${{ env.version }}_x64_en-US.msi.zip.sig" "artifacts/DevUtils_${{ env.version }}_windows_x86_64.msi.zip.sig"
 
       - name: Create Release
         uses: softprops/action-gh-release@master
@@ -153,7 +148,7 @@ jobs:
 
   updater:
     runs-on: ubuntu-latest
-    needs: release-chatgpt
+    needs: release-dev-utils
 
     steps:
       - uses: actions/checkout@v3
@@ -184,14 +179,3 @@ jobs:
 
       - name: Query version number
         run: echo "version=${GITHUB_REF:11}" >> $GITHUB_ENV
-
-  # publish-winget:
-  #   # Action can only be run on windows
-  #   runs-on: windows-latest
-  #   needs: [build-chatgpt, release-chatgpt]
-  #   steps:
-  #     - uses: vedantmgoyal2009/winget-releaser@v1
-  #       with:
-  #         identifier: lencx.ChatGPT
-  #         token: ${{ secrets.WINGET_TOKEN }}
-  #         version: ${{ github.event.release.tag_name }}
