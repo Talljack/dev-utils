@@ -4,7 +4,7 @@
     "beforeBuildCommand": "bun run build",
     "beforeDevCommand": "bun run dev",
     "devPath": "http://localhost:5173",
-    "distDir": "../build",
+    "distDir": "../dist",
     "withGlobalTauri": true
   },
   "package": {
@@ -74,7 +74,7 @@
         "icons/icon_512x512.png",
         "icons/icon.icns"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.dev-utils.desktop",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -84,7 +84,7 @@
         "signingIdentity": null
       },
       "resources": [],
-      "shortDescription": "",
+      "shortDescription": "Dev Utils",
       "targets": "all",
       "windows": {
         "certificateThumbprint": null,
@@ -98,7 +98,7 @@
     "updater": {
       "active": true,
       "dialog": true,
-      "endpoints": ["https://Talljack.github.io/dev-utils/install.json"],
+      "endpoints": ["https://Talljack.github.io/Dev Utils/install.json"],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IENGNjFGQzUwNUEyRTYxOEQKUldTTllTNWFVUHhoei93a0l6V1dPdGJJR0dBdDdOVWtCMHZiODFiY0t1cml6UDVYTzFpYlRUbTMK%"
     },
     "windows": [
