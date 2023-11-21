@@ -8,13 +8,13 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "updater": "tr updater",
     "check": "tsc --incremental --noEmit && rm -f tsconfig.tsbuildinfo",
     "lint": "eslint . --cache --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "format": "prettier --cache --write \"src/**/*.{ts,tsx,json,css,scss,md}\"",
-    "postinstall": "simple-git-hooks",
-    "release": "node scripts/release.mjs",
-    "updater": "node scripts/updater.mjs"
+    "postinstall": "simple-git-hooks"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
