@@ -1,14 +1,14 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "bun run build",
-    "beforeDevCommand": "bun run dev",
+    "beforeBuildCommand": "bun run build:fe",
+    "beforeDevCommand": "bun run dev:fe",
     "devPath": "http://localhost:5173",
     "distDir": "../dist",
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "Dev Utils",
+    "productName": "DevUtils",
     "version": "0.1.0"
   },
   "tauri": {
@@ -70,10 +70,7 @@
         "depends": []
       },
       "externalBin": [],
-      "icon": [
-        "icons/icon_512x512.png",
-        "icons/icon.icns"
-      ],
+      "icon": ["icons/icon_512x512.png", "icons/icon.icns"],
       "identifier": "com.dev-utils.desktop",
       "longDescription": "",
       "macOS": {
