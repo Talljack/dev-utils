@@ -10,7 +10,7 @@ Tauri, React, Vite and TypeScript Application template for developer.
 bun install
 
 # Run the app
-bun tauri:dev
+bun dev
 ```
 
 ## Tech Stack
