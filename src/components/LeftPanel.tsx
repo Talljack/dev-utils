@@ -8,7 +8,6 @@ import IconWrapper from './IconWrapper'
 const LeftPanel = () => {
   const { id } = useParams()
   const getActiveClass = (pathId: string) => {
-    console.log('xxxx', id, pathId)
     return id === pathId ? 'bg-sky-500 text-white' : ''
   }
   return (
@@ -19,22 +18,20 @@ const LeftPanel = () => {
       </div>
       <div className="bottom flex-1 py-4">
         {utilMap.map(utilItem => (
-          <div
+          <Link
             key={utilItem.name}
-            className={`group flex items-center space-y-3 rounded-md px-8 py-2 hover:bg-sky-500 ${getActiveClass(
+            className={`group mt-2 flex cursor-pointer items-center space-y-3 rounded-md px-8 py-2 first-of-type:mt-0 hover:bg-sky-500 ${getActiveClass(
               utilItem.paramId
             )}`}
+            to={utilItem.path}
           >
             <IconWrapper className="h-[24px] w-[24px] group-hover:text-white">
               {utilItem.icon}
             </IconWrapper>
-            <Link
-              className="relative top-[-5px] ml-2 group-hover:text-white"
-              to={utilItem.path}
-            >
+            <div className="relative top-[-5px] ml-2 group-hover:text-white">
               {utilItem.name}
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
