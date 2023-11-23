@@ -51,7 +51,8 @@ const JsonFormatter: FC<JsonFormatterProps> = ({ id }) => {
             readOnly: false
           }}
           language="json"
-          className="h-[800px] w-[500px]"
+          width={'500'}
+          height={'800'}
         />
         <CodeViewer
           code={formatOutput}
@@ -61,7 +62,8 @@ const JsonFormatter: FC<JsonFormatterProps> = ({ id }) => {
             readOnly: true
           }}
           language="json"
-          className="h-[800px] w-[500px]"
+          width={'500'}
+          height={'800'}
         />
       </div>
     </div>
