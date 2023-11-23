@@ -62,15 +62,17 @@ const CodeEditor: FC<Props> = ({
           <GearIcon />
         </Button>
       </div>
-      <MonacoEditor
-        className={`bg-gray-800 p-4 ${className}`}
-        value={code}
-        onChange={onChange}
-        options={options}
-        language={language}
-        height={height}
-        width={width}
-      />
+      <div className="bg-gray-800 p-4">
+        <MonacoEditor
+          className={`${className}`}
+          value={code}
+          onChange={onChange}
+          options={options}
+          language={language}
+          height={height}
+          width={width}
+        />
+      </div>
     </div>
   )
 }

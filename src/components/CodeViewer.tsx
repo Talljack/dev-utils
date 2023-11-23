@@ -64,14 +64,16 @@ const CodeViewer: FC<CodeViewerProps> = ({
           Copy
         </Button>
       </div>
-      <MonacoEditor
-        className={` bg-gray-800 p-4 ${className}`}
-        value={code}
-        language={language}
-        options={options}
-        width={width}
-        height={height}
-      />
+      <div className="bg-gray-800 p-4 ">
+        <MonacoEditor
+          className={`${className}`}
+          value={code}
+          language={language}
+          options={options}
+          width={width}
+          height={height}
+        />
+      </div>
     </div>
   )
 }
