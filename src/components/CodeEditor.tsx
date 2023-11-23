@@ -1,15 +1,22 @@
 import { Button } from '@components/ui/button'
 import { GearIcon } from '@radix-ui/react-icons'
 import { readText } from '@tauri-apps/api/clipboard'
+import type {
+  MonacoCodeEditorLanguage,
+  MonacoEditorProps
+} from 'monaco-editor-component/react'
+import { MonacoEditor } from 'monaco-editor-component/react'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC } from 'react'
 
 interface Props {
   code: string
   className?: string
-  language?: string
+  language?: MonacoCodeEditorLanguage
   options?: monaco.editor.IStandaloneEditorConstructionOptions
   onChange?: (value: string) => void
+  width?: MonacoEditorProps['width']
+  height?: MonacoEditorProps['height']
 }
 
 const defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
@@ -30,39 +37,15 @@ const CodeEditor: FC<Props> = ({
   className,
   language = 'typescript',
   options = defaultOptions,
-  onChange = () => {}
+  onChange = () => {},
+  width = '100%',
+  height = '100%'
 }) => {
-  const editorRef = useRef<HTMLDivElement>(null)
-  const [editor, setEditor] =
-    useState<monaco.editor.IStandaloneCodeEditor | null>(null)
-  useEffect(() => {
-    if (editorRef) {
-      setEditor(editor => {
-        if (editor) return editor
-        const monacoEditor = monaco.editor.create(editorRef.current!, {
-          value: code,
-          ...defaultOptions,
-          ...options,
-          language
-        })
-        monacoEditor?.onDidChangeModelContent(() => {
-          const newValue = monacoEditor.getValue()
-          onChange(newValue)
-        })
-        return monacoEditor
-      })
-    }
-
-    return () => editor?.dispose()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editorRef, editor])
   const handleClear = () => {
-    editor?.setValue('')
     onChange('')
   }
   const handlePaste = async () => {
     const clipboardText = await readText()
-    editor?.setValue(clipboardText ?? '')
     onChange(clipboardText ?? '')
   }
   return (
@@ -79,7 +62,15 @@ const CodeEditor: FC<Props> = ({
           <GearIcon />
         </Button>
       </div>
-      <div ref={editorRef} className={` bg-gray-800 p-4 ${className}`} />
+      <MonacoEditor
+        className={`bg-gray-800 p-4 ${className}`}
+        value={code}
+        onChange={onChange}
+        options={options}
+        language={language}
+        height={height}
+        width={width}
+      />
     </div>
   )
 }

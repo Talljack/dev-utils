@@ -2,6 +2,6 @@ import type { ReactNode } from 'react'
 export type UtilItem = {
   name: string
   path: string
-  icon: ReactNode
+  icon?: ReactNode
   paramId: string
 }

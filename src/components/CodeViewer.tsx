@@ -2,20 +2,27 @@ import InputNumber from '@/components/ui/inputNumber'
 import { useToast } from '@/components/ui/use-toast'
 import { CopyIcon } from '@radix-ui/react-icons'
 import { writeText } from '@tauri-apps/api/clipboard'
-import * as monaco from 'monaco-editor'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import type {
+  MonacoCodeEditorLanguage,
+  MonacoEditorOptions,
+  MonacoEditorProps
+} from 'monaco-editor-component/react'
+import { MonacoEditor } from 'monaco-editor-component/react'
+import React, { FC } from 'react'
 import { Button } from './ui/button'
 
 interface CodeViewerProps {
   code: string
-  language?: string
+  language?: MonacoCodeEditorLanguage
   className?: string
-  options?: monaco.editor.IStandaloneEditorConstructionOptions
+  options?: MonacoEditorOptions
   space?: number
   onSpaceChange?: (value: number) => void
+  width?: MonacoEditorProps['width']
+  height?: MonacoEditorProps['height']
 }
 
-const defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
+const defaultOptions: MonacoEditorOptions = {
   theme: 'vs-dark',
   formatOnPaste: true,
   automaticLayout: true,
@@ -31,46 +38,20 @@ const defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
 const CodeViewer: FC<CodeViewerProps> = ({
   code,
   language = 'typescript',
-  className,
+  className = '',
   options = defaultOptions,
   space = 2,
-  onSpaceChange = () => {}
+  onSpaceChange = () => {},
+  width = '100%',
+  height = '100%'
 }) => {
-  const editorRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
-  const [editor, setEditor] =
-    useState<monaco.editor.IStandaloneCodeEditor | null>(null)
-  useEffect(() => {
-    if (editorRef) {
-      setEditor(editor => {
-        if (editor) return editor
-
-        return monaco.editor.create(editorRef.current!, {
-          value: '',
-          ...defaultOptions,
-          ...options,
-          language: language
-        })
-      })
-    }
-    return () => editor?.dispose()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editorRef, editor])
-
-  useEffect(() => {
-    if (editor) {
-      editor.setValue(code)
-    }
-  }, [code, editor])
 
   const onCopy = async () => {
-    if (editor) {
-      const code = editor.getValue()
-      await writeText(code)
-      toast({
-        description: 'Copied to clipboard'
-      })
-    }
+    await writeText(code)
+    toast({
+      description: 'Copied to clipboard'
+    })
   }
 
   return (
@@ -83,7 +64,14 @@ const CodeViewer: FC<CodeViewerProps> = ({
           Copy
         </Button>
       </div>
-      <div ref={editorRef} className={` bg-gray-800 p-4 ${className}`} />
+      <MonacoEditor
+        className={` bg-gray-800 p-4 ${className}`}
+        value={code}
+        language={language}
+        options={options}
+        width={width}
+        height={height}
+      />
     </div>
   )
 }

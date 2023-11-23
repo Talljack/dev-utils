@@ -3,7 +3,6 @@ import { utilMap } from '@/constant'
 import { RocketIcon } from '@radix-ui/react-icons'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import IconWrapper from './IconWrapper'
 
 const LeftPanel = () => {
   const { id } = useParams()
@@ -25,10 +24,7 @@ const LeftPanel = () => {
             )}`}
             to={utilItem.path}
           >
-            <IconWrapper className="h-[24px] w-[24px] group-hover:text-white">
-              {utilItem.icon}
-            </IconWrapper>
-            <div className="relative top-[-5px] ml-2 group-hover:text-white">
+            <div className="relative ml-2 flex items-center group-hover:text-white">
               {utilItem.name}
             </div>
           </Link>
