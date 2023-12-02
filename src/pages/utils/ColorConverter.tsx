@@ -63,6 +63,7 @@ function hexToHsl(hex: string): string {
   const regArr = hex.match(/\w{2}/g)
   if (!regArr) return ''
   const [r, g, b] = regArr.map(item => parseInt(item, 16))
+  console.log(r, g, b)
   return rgbToHsl(`rgb(${r}, ${g}, ${b})`)
 }
 // Hex to CMYK
@@ -94,46 +95,65 @@ function rgbToHex(rgb: string): string {
 function rgbToHsl(rgb: string): string {
   const regArr = rgb.match(/\d+/g)
   if (!regArr) return ''
-  const [r, g, b] = regArr.map(Number)
+  let [r, g, b] = regArr.map(Number)
+  r /= 255
+  g /= 255
+  b /= 255
+
   const max = Math.max(r, g, b)
   const min = Math.min(r, g, b)
-  const l = (max + min) / 2
+  let s: number,
+    l: number = (max + min) / 2
   let h = 0
-  let s = 0
-  if (max !== min) {
+
+  if (max === min) {
+    h = s = 0 // achromatic
+  } else {
     const d = max - min
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+
     switch (max) {
       case r:
-        h = ((g - b) / d + (g < b ? 6 : 0)) / 6
+        h = (g - b) / d + (g < b ? 6 : 0)
         break
       case g:
-        h = ((b - r) / d + 2) / 6
+        h = (b - r) / d + 2
         break
       case b:
-        h = ((r - g) / d + 4) / 6
-        break
-      default:
+        h = (r - g) / d + 4
         break
     }
+
+    h /= 6
+    h *= 360
+    s *= 100
+    l *= 100
   }
-  return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(
-    l * 100
-  )}%)`
+
+  return `hsl(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%)`
 }
 
 // RGB to CMYK
 function rgbToCmyk(rgb: string): string {
   const regArr = rgb.match(/\d+/g)
   if (!regArr) return ''
-  const [r, g, b] = regArr.map(Number)
-  const c = 1 - r / 255
-  const m = 1 - g / 255
-  const y = 1 - b / 255
-  const k = Math.min(c, m, y)
-  return `cmyk(${Math.round(c * 100)}, ${Math.round(m * 100)}, ${Math.round(
+  let [r, g, b] = regArr.map(Number)
+  if (r === 0 && g === 0 && b === 0) {
+    return 'cmyk(0%, 0%, 0%, 100%)' // black
+  }
+
+  r /= 255
+  g /= 255
+  b /= 255
+
+  const k = 1 - Math.max(r, g, b)
+  const c = (1 - r - k) / (1 - k)
+  const m = (1 - g - k) / (1 - k)
+  const y = (1 - b - k) / (1 - k)
+
+  return `cmyk(${Math.round(c * 100)}%, ${Math.round(m * 100)}%, ${Math.round(
     y * 100
-  )}, ${Math.round(k * 100)})`
+  )}%, ${Math.round(k * 100)}%)`
 }
 
 // RGB to Color Name
@@ -158,7 +178,7 @@ function rgbToColorName(rgb: string): string {
     { rgb: [128, 0, 0], keyword: 'maroon' },
     { rgb: [255, 255, 255], keyword: 'white' },
     { rgb: [0, 0, 0], keyword: 'black' },
-    { rgb: [79, 178, 51], keyword: 'mediumseagreen' }
+    { rgb: [79, 178, 51], keyword: 'limegreen' }
     //... 更多颜色
   ]
 
@@ -192,40 +212,30 @@ function hslToRgb(hsl: string): string {
   const regArr = hsl.match(/\d+/g)
   if (!regArr) return ''
   const [h, s, l] = regArr.map(Number)
-  const c = (1 - Math.abs(2 * l - 1)) * s
-  const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
-  const m = l - c / 2
-  let r = 0
-  let g = 0
-  let b = 0
-  if (h >= 0 && h < 60) {
-    r = c
-    g = x
-    b = 0
-  } else if (h >= 60 && h < 120) {
-    r = x
-    g = c
-    b = 0
-  } else if (h >= 120 && h < 180) {
-    r = 0
-    g = c
-    b = x
-  } else if (h >= 180 && h < 240) {
-    r = 0
-    g = x
-    b = c
-  } else if (h >= 240 && h < 300) {
-    r = x
-    g = 0
-    b = c
-  } else if (h >= 300 && h < 360) {
-    r = c
-    g = 0
-    b = x
+  const hslToRgb = (h: number, s: number, l: number) => {
+    let r, g, b
+    if (s === 0) {
+      r = g = b = l // achromatic
+    } else {
+      const hue2rgb = (p: number, q: number, t: number) => {
+        if (t < 0) t += 1
+        if (t > 1) t -= 1
+        if (t < 1 / 6) return p + (q - p) * 6 * t
+        if (t < 1 / 2) return q
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6
+        return p
+      }
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s
+      const p = 2 * l - q
+      r = hue2rgb(p, q, h + 1 / 3)
+      g = hue2rgb(p, q, h)
+      b = hue2rgb(p, q, h - 1 / 3)
+    }
+    return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(
+      b * 255
+    )})`
   }
-  return `rgb(${Math.round((r + m) * 255)}, ${Math.round(
-    (g + m) * 255
-  )}, ${Math.round((b + m) * 255)})`
+  return hslToRgb(h / 360, s / 100, l / 100)
 }
 
 // HSL to CMYK
@@ -313,7 +323,7 @@ function detectColorType(color: string): ColorType {
     return 'hsl'
   } else if (color.startsWith('cmyk')) {
     return 'cmyk'
-  } else if (color.startsWith('color')) {
+  } else if (colorNameMap[color.toLowerCase()]) {
     return 'keyword'
   } else {
     return 'error'
@@ -391,10 +401,11 @@ const ColorConverter: FC = () => {
       if (colorType === 'error') {
         setInputResult(errorColor)
         setResult(cloneDeep(initialResult))
-        return
+      } else {
+        setInputResult('')
+        const converterColorResult = convertColor(input, colorType)
+        setResult(converterColorResult)
       }
-      const converterColorResult = convertColor(input, colorType)
-      setResult(converterColorResult)
     } catch (error) {
       console.error(error)
     }
