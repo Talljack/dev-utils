@@ -30,7 +30,7 @@ const JsonFormatter: FC = () => {
   }, [space, userInput, jsonFormatter])
 
   return (
-    <div className="flex flex-col">
+    <div className="flex">
       <div className="flex justify-between py-4">
         <CodeEditor
           code={userInput}

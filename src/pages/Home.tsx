@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div className="flex w-full">
       <LeftPanel />
-      <div className="flex-1 bg-red-100">
+      <div className="w-full flex-1 bg-red-100">
         <Outlet />
       </div>
     </div>
