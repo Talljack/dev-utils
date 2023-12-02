@@ -1,6 +1,5 @@
 import { Input } from '@/components/ui/input'
 import { utilMap } from '@/constant'
-import { RocketIcon } from '@radix-ui/react-icons'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 
@@ -13,7 +12,6 @@ const LeftPanel = () => {
     <div className="flex w-[400px] flex-col px-2 py-4">
       <div className="top flex w-full items-center justify-between gap-4 border-b px-2 py-4">
         <Input placeholder="Search" />
-        <RocketIcon className="h-[28px] w-[28px]" />
       </div>
       <div className="bottom flex-1 py-4">
         {utilMap.map(utilItem => (

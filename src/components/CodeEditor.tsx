@@ -29,7 +29,9 @@ const defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
   },
   cursorStyle: 'line',
   roundedSelection: false,
-  selectOnLineNumbers: true
+  selectOnLineNumbers: true,
+  lineDecorationsWidth: 0,
+  lineNumbersMinChars: 0
 }
 
 const CodeEditor: FC<Props> = ({

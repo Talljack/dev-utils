@@ -1,7 +1,4 @@
 import InputNumber from '@/components/ui/inputNumber'
-import { useToast } from '@/components/ui/use-toast'
-import { CopyIcon } from '@radix-ui/react-icons'
-import { writeText } from '@tauri-apps/api/clipboard'
 import type {
   MonacoCodeEditorLanguage,
   MonacoEditorOptions,
@@ -9,7 +6,7 @@ import type {
 } from 'monaco-editor-component/react'
 import { MonacoEditor } from 'monaco-editor-component/react'
 import React, { FC } from 'react'
-import { Button } from './ui/button'
+import Copy from './common/Copy'
 
 interface CodeViewerProps {
   code: string
@@ -32,7 +29,9 @@ const defaultOptions: MonacoEditorOptions = {
   },
   cursorStyle: 'line',
   roundedSelection: false,
-  selectOnLineNumbers: true
+  selectOnLineNumbers: true,
+  lineDecorationsWidth: 0,
+  lineNumbersMinChars: 0
 }
 
 const CodeViewer: FC<CodeViewerProps> = ({
@@ -45,24 +44,12 @@ const CodeViewer: FC<CodeViewerProps> = ({
   width = '100%',
   height = '100%'
 }) => {
-  const { toast } = useToast()
-
-  const onCopy = async () => {
-    await writeText(code)
-    toast({
-      description: 'Copied to clipboard'
-    })
-  }
-
   return (
     <div className="rounded-md pl-4">
       <div className="mb-2 ml-2 mt-2 flex w-full items-center gap-2">
         <div>Output:</div>
         <InputNumber value={space} onChange={onSpaceChange} />
-        <Button variant="outline" onClick={onCopy}>
-          <CopyIcon className="mr-2" />
-          Copy
-        </Button>
+        <Copy value={code} />
       </div>
       <div className="bg-gray-800 p-4 ">
         <MonacoEditor
