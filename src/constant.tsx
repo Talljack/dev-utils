@@ -1,5 +1,6 @@
 import UtilBase64Decode from '@/pages/utils/Base64Decode'
 import UtilBase64Encode from '@/pages/utils/Base64Encode'
+import UtilColorConverter from '@/pages/utils/ColorConverter'
 import UtilJsonDiff from '@/pages/utils/JsonDiff'
 import UtilJsonFormatter from '@/pages/utils/JsonFormatter'
 import type { UtilItem } from '@/type'
@@ -24,6 +25,11 @@ export const utilMap: UtilItem[] = [
     name: 'Base64 Decode',
     path: '/utils/base64-decode',
     paramId: 'base64-decode'
+  },
+  {
+    name: 'Color Converter',
+    path: '/utils/color-converter',
+    paramId: 'color-converter'
   }
 ]
 
@@ -31,5 +37,6 @@ export const utilsIdPageMap = {
   'json-formatter': <UtilJsonFormatter />,
   'json-diff': <UtilJsonDiff />,
   'base64-encode': <UtilBase64Encode />,
-  'base64-decode': <UtilBase64Decode />
+  'base64-decode': <UtilBase64Decode />,
+  'color-converter': <UtilColorConverter />
 }
