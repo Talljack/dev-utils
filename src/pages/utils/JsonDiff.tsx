@@ -1,16 +1,11 @@
 import CodeEditor from '@/components/CodeEditor'
 import { Button } from '@/components/ui/button'
-import { getUtilItem } from '@/utils'
 import '@/worker'
 import { MonacoDiffEditor } from 'monaco-editor-component/react'
 import type { FC } from 'react'
 import React, { useState } from 'react'
 
-interface JsonDiffProps {
-  id: string
-}
-
-const JsonDiff: FC<JsonDiffProps> = ({ id }) => {
+const JsonDiff: FC = () => {
   const [originalValue, setOriginalValue] = useState('')
   const [modifiedValue, setModifiedValue] = useState('')
   const [showDiff, setShowDiff] = useState(false)
@@ -21,17 +16,13 @@ const JsonDiff: FC<JsonDiffProps> = ({ id }) => {
       return ''
     }
   }
-  const utilItem = getUtilItem(id)
   return (
-    <div className="flex flex-col p-4">
-      <h1 className="flex items-center justify-center font-bold">
-        {utilItem.name}
-      </h1>
+    <div className="flex flex-col">
       <div className="flex py-4">
         {showDiff ? (
           <div className="flex flex-wrap justify-center gap-6">
             <MonacoDiffEditor
-              width={1080}
+              width={900}
               height={800}
               options={{
                 readOnly: true,
@@ -45,7 +36,7 @@ const JsonDiff: FC<JsonDiffProps> = ({ id }) => {
           </div>
         ) : (
           <div className="input flex flex-wrap justify-center gap-6 py-4">
-            <div className="flex w-full">
+            <div className="flex w-full justify-between">
               <CodeEditor
                 code={originalValue}
                 onChange={(value: string) => {
@@ -57,7 +48,7 @@ const JsonDiff: FC<JsonDiffProps> = ({ id }) => {
                   fontSize: 16
                 }}
                 language="json"
-                width={'500'}
+                width={'480'}
                 height={'700'}
               />
               <CodeEditor
@@ -71,7 +62,7 @@ const JsonDiff: FC<JsonDiffProps> = ({ id }) => {
                   fontSize: 16
                 }}
                 language="json"
-                width={'500'}
+                width={'480'}
                 height={'700'}
               />
             </div>

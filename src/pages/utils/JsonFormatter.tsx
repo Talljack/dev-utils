@@ -1,16 +1,10 @@
 import CodeEditor from '@/components/CodeEditor'
 import CodeViewer from '@/components/CodeViewer'
-import { getUtilItem } from '@/utils'
-import '@/worker'
 import { debounce } from 'lodash-es'
 import type { FC } from 'react'
 import React, { useCallback, useEffect, useState } from 'react'
 
-interface JsonFormatterProps {
-  id: string
-}
-
-const JsonFormatter: FC<JsonFormatterProps> = ({ id }) => {
+const JsonFormatter: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
   const [space, setSpace] = useState(2)
@@ -35,13 +29,9 @@ const JsonFormatter: FC<JsonFormatterProps> = ({ id }) => {
     jsonFormatter(userInput)
   }, [space, userInput, jsonFormatter])
 
-  const utilItem = getUtilItem(id)
   return (
-    <div className="flex flex-col p-4">
-      <h1 className="flex items-center justify-center font-bold">
-        {utilItem.name}
-      </h1>
-      <div className="flex py-4">
+    <div className="flex flex-col">
+      <div className="flex justify-between py-4">
         <CodeEditor
           code={userInput}
           onChange={(value: string) => {
@@ -51,8 +41,8 @@ const JsonFormatter: FC<JsonFormatterProps> = ({ id }) => {
             readOnly: false
           }}
           language="json"
-          width={'500'}
-          height={'800'}
+          width={'480'}
+          height={'750'}
         />
         <CodeViewer
           code={formatOutput}
@@ -62,8 +52,8 @@ const JsonFormatter: FC<JsonFormatterProps> = ({ id }) => {
             readOnly: true
           }}
           language="json"
-          width={'500'}
-          height={'800'}
+          width={'480'}
+          height={'750'}
         />
       </div>
     </div>
