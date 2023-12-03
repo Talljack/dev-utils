@@ -30,8 +30,8 @@ const JsonFormatter: FC = () => {
   }, [space, userInput, jsonFormatter])
 
   return (
-    <div className="flex">
-      <div className="flex justify-between py-4">
+    <div className="flex h-full">
+      <div className="flex w-full justify-between py-4">
         <CodeEditor
           code={userInput}
           onChange={(value: string) => {
@@ -41,8 +41,7 @@ const JsonFormatter: FC = () => {
             readOnly: false
           }}
           language="json"
-          width={'480'}
-          height={'750'}
+          sampleValue='{"name":"John","age":30,"city":"New York"}'
         />
         <CodeViewer
           code={formatOutput}
@@ -52,8 +51,6 @@ const JsonFormatter: FC = () => {
             readOnly: true
           }}
           language="json"
-          width={'480'}
-          height={'750'}
         />
       </div>
     </div>

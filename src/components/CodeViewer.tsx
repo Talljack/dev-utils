@@ -45,13 +45,13 @@ const CodeViewer: FC<CodeViewerProps> = ({
   height = '100%'
 }) => {
   return (
-    <div className="rounded-md pl-4">
+    <div className="flex flex-1 flex-col rounded-md pl-4">
       <div className="mb-2 ml-2 mt-2 flex w-full items-center gap-2">
         <div>Output:</div>
         <InputNumber value={space} onChange={onSpaceChange} />
         <Copy value={code} />
       </div>
-      <div className="bg-gray-800 p-4 ">
+      <div className="h-full w-full bg-gray-800 p-4">
         <MonacoEditor
           className={`${className}`}
           value={code}

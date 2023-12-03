@@ -1,6 +1,3 @@
-import { Button } from '@components/ui/button'
-import { GearIcon } from '@radix-ui/react-icons'
-import { readText } from '@tauri-apps/api/clipboard'
 import type {
   MonacoCodeEditorLanguage,
   MonacoEditorProps
@@ -8,6 +5,7 @@ import type {
 import { MonacoEditor } from 'monaco-editor-component/react'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import React, { FC } from 'react'
+import InputTip from './common/InputTip'
 
 interface Props {
   code: string
@@ -17,6 +15,8 @@ interface Props {
   onChange?: (value: string) => void
   width?: MonacoEditorProps['width']
   height?: MonacoEditorProps['height']
+  sampleValue?: string
+  inputLabel?: string
 }
 
 const defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
@@ -41,30 +41,19 @@ const CodeEditor: FC<Props> = ({
   options = defaultOptions,
   onChange = () => {},
   width = '100%',
-  height = '100%'
+  height = '100%',
+  sampleValue,
+  inputLabel = 'Input:'
 }) => {
-  const handleClear = () => {
-    onChange('')
-  }
-  const handlePaste = async () => {
-    const clipboardText = await readText()
-    onChange(clipboardText ?? '')
-  }
   return (
-    <div className="flex flex-col items-center">
-      <div className="mb-2 ml-2 mt-2 flex w-full items-center gap-2">
-        <div>Input:</div>
-        <Button variant="outline" onClick={() => handlePaste()}>
-          Clipboard
-        </Button>
-        <Button variant="outline" onClick={() => handleClear()}>
-          Clear
-        </Button>
-        <Button variant="outline" size="icon">
-          <GearIcon />
-        </Button>
-      </div>
-      <div className="bg-gray-800 p-4">
+    <div className="flex h-full flex-1 flex-col items-center">
+      <InputTip
+        sampleValue={sampleValue}
+        onValueChange={onChange}
+        className="mb-4"
+        inputLabel={inputLabel}
+      />
+      <div className="h-full w-full bg-gray-800 p-4">
         <MonacoEditor
           className={`${className}`}
           value={code}

@@ -17,13 +17,11 @@ const JsonDiff: FC = () => {
     }
   }
   return (
-    <div className="flex flex-col">
-      <div className="flex py-4">
+    <div className="flex h-full flex-col">
+      <div className="flex h-full">
         {showDiff ? (
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-6">
             <MonacoDiffEditor
-              width={900}
-              height={800}
               options={{
                 readOnly: true,
                 fontSize: 16
@@ -32,11 +30,18 @@ const JsonDiff: FC = () => {
               originalValue={formatJson(originalValue)}
               value={formatJson(modifiedValue)}
             />
-            <Button onClick={() => setShowDiff(false)}>Back</Button>
+            <Button className="h-10 w-20" onClick={() => setShowDiff(false)}>
+              Back
+            </Button>
           </div>
         ) : (
-          <div className="input flex flex-wrap justify-center gap-6 py-4">
-            <div className="flex w-full justify-between">
+          <div
+            className="input flex h-full w-full flex-1 flex-col justify-center gap-6"
+            style={{
+              alignItems: 'center'
+            }}
+          >
+            <div className="flex h-full w-full flex-1 justify-between gap-4">
               <CodeEditor
                 code={originalValue}
                 onChange={(value: string) => {
@@ -48,8 +53,8 @@ const JsonDiff: FC = () => {
                   fontSize: 16
                 }}
                 language="json"
-                width={'480'}
-                height={'700'}
+                sampleValue='{"name":"John","age":30,"city":"New York"}'
+                inputLabel="Original:"
               />
               <CodeEditor
                 code={modifiedValue}
@@ -62,11 +67,13 @@ const JsonDiff: FC = () => {
                   fontSize: 16
                 }}
                 language="json"
-                width={'480'}
-                height={'700'}
+                sampleValue='{"name":"Tom","age":32,"city":"New York"}'
+                inputLabel="Modified:"
               />
             </div>
-            <Button onClick={() => setShowDiff(true)}>Diff</Button>
+            <Button className="h-10 w-20" onClick={() => setShowDiff(true)}>
+              Diff
+            </Button>
           </div>
         )}
       </div>
