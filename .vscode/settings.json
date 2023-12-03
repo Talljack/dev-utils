@@ -4,5 +4,9 @@
     "source.fixAll.eslint": true,
     "source.fixAll.prettier": false,
     "source.fixAll": false
-  }
+  },
+  "cSpell.words": [
+    "CMYK",
+    "datepicker"
+  ]
 }
