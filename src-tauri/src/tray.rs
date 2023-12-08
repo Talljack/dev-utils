@@ -1,7 +1,6 @@
-use tauri::{SystemTray, SystemTrayEvent, AppHandle, Manager};
+use tauri::{SystemTray, SystemTrayEvent, AppHandle, Manager, CustomMenuItem, SystemTrayMenu, SystemTrayMenuItem};
 pub fn build_tray_menu() -> SystemTray {
   #[cfg(target_os = "macos")]
-  use tauri::{CustomMenuItem, SystemTrayMenu, SystemTrayMenuItem};
   {
     let quit = CustomMenuItem::new("quit".to_string(), "Quit");
     let hide = CustomMenuItem::new("hide".to_string(), "Hide");
@@ -9,7 +8,7 @@ pub fn build_tray_menu() -> SystemTray {
       .add_item(hide)
       .add_native_item(SystemTrayMenuItem::Separator)
       .add_item(quit);
-    SystemTray::new().with_menu(tray_menu)
+    return SystemTray::new().with_menu(tray_menu);
   }
   #[cfg(not(target_os = "macos"))]
   {
