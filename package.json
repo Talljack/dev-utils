@@ -2,6 +2,7 @@
   "name": "dev-utils",
   "version": "0.0.1",
   "type": "module",
+  "packageManager": "pnpm@8.11.0",
   "scripts": {
     "dev:fe": "vite",
     "build:fe": "tsc && vite build",
