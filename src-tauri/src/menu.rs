@@ -1,4 +1,4 @@
-use tauri::{utils::assets::EmbeddedAssets, Context, Menu, CustomMenuItem, WindowMenuEvent};
+use tauri::{utils::assets::EmbeddedAssets, Context, Menu, Submenu, AboutMetadata, MenuItem, CustomMenuItem, WindowMenuEvent};
 use tauri::api::dialog::message;
 
 pub fn build_menu(context: &Context<EmbeddedAssets>) -> Menu {
@@ -6,7 +6,6 @@ pub fn build_menu(context: &Context<EmbeddedAssets>) -> Menu {
   let app_name = &context.package_info().name;
   println!("app_name: {}", app_name);
   #[cfg(target_os = "macos")]
-  use tauri::{MenuItem, Submenu, AboutMetadata};
   {
     // 应用主菜单
     let app_menu = Submenu::new(
@@ -44,13 +43,6 @@ Menu::new()
       .add_submenu(operation_menu)
       .add_submenu(custom_menu)
   }
-  // {
-  //   use tauri::SystemTrayMenu;
-
-  //   menu = menu.system_tray(vec![SystemTrayMenu::Item(
-  //     tauri::SystemTrayMenuItem::Custom("Quit".to_string(), "quit".to_string()),
-  //   )]);
-  // }
   #[cfg(not(target_os = "macos"))]
   {
     Menu::new()
@@ -62,7 +54,6 @@ Menu::new()
 
 pub fn handler_menu(event: WindowMenuEvent) {
   let window = Some(event.window());
-  // let app = event.window().app_handle();
   match event.menu_item_id() {
       "custom-id" => {
           message(window, "Custom menu item clicked!", "Custom menu item clicked!");
