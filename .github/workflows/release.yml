@@ -76,21 +76,21 @@ jobs:
         with:
           name: artifacts-${{ matrix.arch }}
           path: |
-            ./target/${{ matrix.target }}/release/bundle/appimage/**.AppImage.*
-            ./target/${{ matrix.target }}/release/bundle/deb/**.deb
+            ./appimage/**.AppImage.*
+            ./deb/**.deb
       - uses: actions/upload-artifact@v3
         if: matrix.os == 'macos-latest'
         with:
           name: artifacts-${{ matrix.arch }}
           path: |
-            ./target/${{ matrix.target }}/release/bundle/dmg/**.dmg
-            ./target/${{ matrix.target }}/release/bundle/macos/**.app.*
+            ./dmg/**.dmg
+            ./macos/**.app.*
       - uses: actions/upload-artifact@v3
         if: matrix.os == 'windows-latest'
         with:
           name: artifacts-${{ matrix.arch }}
           path: |
-            ./target/${{ matrix.target }}/release/bundle/msi/**
+            ./msi/**
   release-dev-utils:
     needs: build-dev-utils
     runs-on: ubuntu-latest
