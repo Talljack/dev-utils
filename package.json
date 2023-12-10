@@ -7,6 +7,7 @@
     "dev:fe": "vite",
     "build:fe": "tsc && vite build",
     "serve": "vite preview",
+    "tauri": "tauri",
     "dev": "tauri dev",
     "build": "tauri build",
     "release": "tr release --git",
