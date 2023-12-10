@@ -1,6 +1,6 @@
 {
   "name": "dev-utils",
-  "version": "0.0.1",
+  "version": "0.3.4",
   "type": "module",
   "packageManager": "bun@1.0.13",
   "scripts": {
