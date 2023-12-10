@@ -24,6 +24,10 @@ jobs:
             os: macos-latest
             arch: aarch64
             target: aarch64-apple-darwin
+          # - build: windows
+          #   os: windows-latest
+          #   arch: x86_64
+          #   target: x86_64-pc-windows-msvc
 
     steps:
       - uses: actions/checkout@v3
@@ -119,9 +123,6 @@ jobs:
           mv "artifacts/x86_64/deb/dev-utils_${{ env.version }}_amd64.deb" "artifacts/x86_64/deb/DevUtils_${{ env.version }}_linux_x86_64.deb"
           mv "artifacts/x86_64/appimage/dev-utils_${{ env.version }}_amd64.AppImage.tar.gz" "artifacts/DevUtils_${{ env.version }}_linux_x86_64.AppImage.tar.gz"
           mv "artifacts/x86_64/appimage/dev-utils_${{ env.version }}_amd64.AppImage.tar.gz.sig" "artifacts/DevUtils_${{ env.version }}_linux_x86_64.AppImage.tar.gz.sig"
-          mv "artifacts/x86_64/DevUtils_${{ env.version }}_x64_en-US.msi" "artifacts/DevUtils_${{ env.version }}_windows_x86_64.msi"
-          mv "artifacts/x86_64/DevUtils_${{ env.version }}_x64_en-US.msi.zip" "artifacts/DevUtils_${{ env.version }}_windows_x86_64.msi.zip"
-          mv "artifacts/x86_64/DevUtils_${{ env.version }}_x64_en-US.msi.zip.sig" "artifacts/DevUtils_${{ env.version }}_windows_x86_64.msi.zip.sig"
       - name: Create Release
         uses: softprops/action-gh-release@master
         env:
