@@ -15,8 +15,11 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Install bun
-        uses: oven-sh/setup-bun@v1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
 
       - name: Setup node
         uses: actions/setup-node@v4
@@ -24,7 +27,7 @@ jobs:
           node-version: 18.x
 
       - name: Install dependencies
-        run: bun -v && bun install
+        run: pnpm -v && pnpm install
 
       - name: Lint
-        run: bun run lint
+        run: pnpm run lint
