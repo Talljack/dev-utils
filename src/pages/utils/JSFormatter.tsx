@@ -1,37 +1,54 @@
 import CodeEditor from '@/components/CodeEditor'
 import CodeViewer from '@/components/CodeViewer'
 import { debounce } from 'lodash-es'
+import parserBabel from 'prettier/plugins/babel'
+import * as prettierPluginEstree from 'prettier/plugins/estree'
+import * as prettier from 'prettier/standalone'
 import type { FC } from 'react'
 import React, { useCallback, useEffect, useState } from 'react'
 
 const JSFormatter: FC = () => {
   const [userInput, setUserInput] = useState('')
+  const [inputResult, setInputResult] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
-  const [space, setSpace] = useState(2)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const jsonFormatter = useCallback(
     debounce((inputValue: string) => {
       try {
         if (!inputValue) {
+          setInputResult('')
           setFormatOutput('')
           return
         }
-        const json = JSON.parse(inputValue)
-        setFormatOutput(JSON.stringify(json, null, space))
+        prettier
+          .format(inputValue, {
+            parser: 'babel',
+            plugins: [parserBabel, prettierPluginEstree],
+            singleQuote: true,
+            trailingComma: 'none',
+            tabWidth: 2
+          })
+          .then(res => {
+            setFormatOutput(res)
+            setInputResult('')
+          })
+          .catch(() => {
+            setInputResult('Invalid Javascript Code')
+          })
       } catch (error) {
-        setFormatOutput('Invalid JSON')
+        setInputResult('Invalid Javascript Code')
       }
     }, 300),
-    [space, setFormatOutput]
+    [setFormatOutput]
   )
 
   useEffect(() => {
     jsonFormatter(userInput)
-  }, [space, userInput, jsonFormatter])
+  }, [userInput, jsonFormatter])
 
   return (
     <div className="flex h-full">
-      <div className="flex w-full justify-between py-4">
+      <div className="flex h-full w-full justify-between py-4">
         <CodeEditor
           code={userInput}
           onChange={(value: string) => {
@@ -40,17 +57,17 @@ const JSFormatter: FC = () => {
           options={{
             readOnly: false
           }}
-          language="json"
-          sampleValue='{"name":"John","age":30,"city":"New York"}'
+          inputResult={inputResult}
+          language="javascript"
+          sampleValue="const a=1;const b=2;console.log(a+b);"
         />
         <CodeViewer
           code={formatOutput}
-          space={space}
-          onSpaceChange={setSpace}
+          showSpace={false}
           options={{
             readOnly: true
           }}
-          language="json"
+          language="javascript"
         />
       </div>
     </div>

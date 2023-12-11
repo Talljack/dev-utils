@@ -17,6 +17,7 @@ interface CodeViewerProps {
   onSpaceChange?: (value: number) => void
   width?: MonacoEditorProps['width']
   height?: MonacoEditorProps['height']
+  showSpace?: boolean
 }
 
 const defaultOptions: MonacoEditorOptions = {
@@ -42,16 +43,17 @@ const CodeViewer: FC<CodeViewerProps> = ({
   space = 2,
   onSpaceChange = () => {},
   width = '100%',
-  height = '100%'
+  height = '100%',
+  showSpace = true
 }) => {
   return (
     <div className="flex flex-1 flex-col rounded-md pl-4">
       <div className="mb-2 ml-2 mt-2 flex w-full items-center gap-2">
         <div>Output:</div>
-        <InputNumber value={space} onChange={onSpaceChange} />
+        {showSpace && <InputNumber value={space} onChange={onSpaceChange} />}
         <Copy value={code} />
       </div>
-      <div className="h-full w-full bg-gray-800 p-4">
+      <div className="w-full flex-1">
         <MonacoEditor
           className={`${className}`}
           value={code}

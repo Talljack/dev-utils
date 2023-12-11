@@ -17,6 +17,7 @@ interface Props {
   height?: MonacoEditorProps['height']
   sampleValue?: string
   inputLabel?: string
+  inputResult?: string
 }
 
 const defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
@@ -43,7 +44,8 @@ const CodeEditor: FC<Props> = ({
   width = '100%',
   height = '100%',
   sampleValue,
-  inputLabel = 'Input:'
+  inputLabel = 'Input:',
+  inputResult
 }) => {
   return (
     <div className="flex h-full flex-1 flex-col items-center">
@@ -53,7 +55,7 @@ const CodeEditor: FC<Props> = ({
         className="mb-4"
         inputLabel={inputLabel}
       />
-      <div className="h-full w-full bg-gray-800 p-4">
+      <div className="flex w-full flex-1">
         <MonacoEditor
           className={`${className}`}
           value={code}
@@ -64,6 +66,11 @@ const CodeEditor: FC<Props> = ({
           width={width}
         />
       </div>
+      {inputResult && (
+        <div className="mt-4 h-10 w-full bg-black p-2 text-red-700">
+          {inputResult}
+        </div>
+      )}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import UtilBase64Decode from '@/pages/utils/Base64Decode'
 import UtilBase64Encode from '@/pages/utils/Base64Encode'
 import UtilColorConverter from '@/pages/utils/ColorConverter'
 import UtilHashGenerator from '@/pages/utils/HashGenerator'
+import UtilJSFormatter from '@/pages/utils/JSFormatter'
 import UtilJsonDiff from '@/pages/utils/JsonDiff'
 import UtilJsonFormatter from '@/pages/utils/JsonFormatter'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
@@ -57,5 +58,6 @@ export const utilsIdPageMap = {
   'base64-decode': <UtilBase64Decode />,
   'color-converter': <UtilColorConverter />,
   'timestamp-converter': <UtilTimestampConverter />,
-  'hash-generator': <UtilHashGenerator />
+  'hash-generator': <UtilHashGenerator />,
+  'js-formatter': <UtilJSFormatter />
 }
