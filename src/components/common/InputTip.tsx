@@ -5,6 +5,7 @@ import type { FC } from 'react'
 import React from 'react'
 
 export interface InputTipProps {
+  value?: string
   onValueChange?: (value: string) => void
   showSample?: boolean
   sampleValue?: string
@@ -16,7 +17,8 @@ const InputTip: FC<InputTipProps> = ({
   showSample = true,
   sampleValue = '',
   className = '',
-  inputLabel = 'Input:'
+  inputLabel = 'Input:',
+  value
 }) => {
   const getClipboardText = async () => {
     const clipboardText = await readText()
@@ -24,13 +26,13 @@ const InputTip: FC<InputTipProps> = ({
   }
   return (
     <div className={`flex w-full justify-between ${className}`}>
-      <Label className=" text-lg font-bold">{inputLabel}</Label>
+      <Label className="text-lg font-bold ">{inputLabel}</Label>
       <div className="operation flex items-center gap-2">
         <Button onClick={getClipboardText}>Clipboard</Button>
         {showSample && (
           <Button onClick={() => onValueChange?.(sampleValue)}>Sample</Button>
         )}
-        <Button onClick={() => onValueChange?.('')}>Clear</Button>
+        {value && <Button onClick={() => onValueChange?.('')}>Clear</Button>}
       </div>
     </div>
   )
