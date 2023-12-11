@@ -1,6 +1,7 @@
 import UtilBase64Decode from '@/pages/utils/Base64Decode'
 import UtilBase64Encode from '@/pages/utils/Base64Encode'
 import UtilColorConverter from '@/pages/utils/ColorConverter'
+import UtilHashGenerator from '@/pages/utils/HashGenerator'
 import UtilJsonDiff from '@/pages/utils/JsonDiff'
 import UtilJsonFormatter from '@/pages/utils/JsonFormatter'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
@@ -36,6 +37,11 @@ export const utilMap: UtilItem[] = [
     name: 'Timestamp Converter',
     path: '/utils/timestamp-converter',
     paramId: 'timestamp-converter'
+  },
+  {
+    name: 'Hash Generator',
+    path: '/utils/hash-generator',
+    paramId: 'hash-generator'
   }
 ]
 
@@ -45,5 +51,6 @@ export const utilsIdPageMap = {
   'base64-encode': <UtilBase64Encode />,
   'base64-decode': <UtilBase64Decode />,
   'color-converter': <UtilColorConverter />,
-  'timestamp-converter': <UtilTimestampConverter />
+  'timestamp-converter': <UtilTimestampConverter />,
+  'hash-generator': <UtilHashGenerator />
 }
