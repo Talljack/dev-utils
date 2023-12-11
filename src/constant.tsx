@@ -42,6 +42,11 @@ export const utilMap: UtilItem[] = [
     name: 'Hash Generator',
     path: '/utils/hash-generator',
     paramId: 'hash-generator'
+  },
+  {
+    name: 'JS Formatter',
+    path: '/utils/js-formatter',
+    paramId: 'js-formatter'
   }
 ]
 
