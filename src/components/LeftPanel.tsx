@@ -21,7 +21,7 @@ const LeftPanel = () => {
     return id === pathId ? 'bg-sky-500 text-white' : ''
   }
   return (
-    <div className="flex w-[300px] flex-col px-2 py-4">
+    <div className="flex shrink-0 basis-[300px] flex-col px-2 py-4">
       <div className="top flex w-full items-center justify-between gap-4 border-b px-2 py-4">
         <Input
           placeholder="Search"

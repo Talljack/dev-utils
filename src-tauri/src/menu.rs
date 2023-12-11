@@ -1,4 +1,4 @@
-use tauri::{utils::assets::EmbeddedAssets, Context, Menu, Submenu, AboutMetadata, MenuItem, CustomMenuItem, WindowMenuEvent};
+use tauri::{utils::assets::EmbeddedAssets, Context, Menu, WindowMenuEvent};
 use tauri::api::dialog::message;
 
 pub fn build_menu(context: &Context<EmbeddedAssets>) -> Menu {
@@ -7,6 +7,7 @@ pub fn build_menu(context: &Context<EmbeddedAssets>) -> Menu {
   println!("app_name: {}", app_name);
   #[cfg(target_os = "macos")]
   {
+    use tauri::{ Submenu, AboutMetadata, MenuItem, CustomMenuItem };
     // 应用主菜单
     let app_menu = Submenu::new(
       "",
