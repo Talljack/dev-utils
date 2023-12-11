@@ -2,7 +2,8 @@ import Copy from '@/components/common/Copy'
 import InputTip from '@/components/common/InputTip'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { MD5, SHA1, SHA256, SHA512 } from 'crypto-js'
+import { CopyIcon } from '@radix-ui/react-icons'
+import { MD5, SHA1, SHA256, SHA384, SHA512 } from 'crypto-js'
 import { cloneDeep } from 'lodash-es'
 import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
@@ -11,6 +12,7 @@ type HashResultType = {
   md5: string
   sha1: string
   sha256: string
+  sha384: string
   sha512: string
 }
 
@@ -18,6 +20,7 @@ const initialResult: HashResultType = {
   md5: '',
   sha1: '',
   sha256: '',
+  sha384: '',
   sha512: ''
 }
 
@@ -27,8 +30,13 @@ const renderHashItem = (hash: string, type: string) => {
       <Label>{type}</Label>
       <div className="hash-show mt-1 flex w-full flex-wrap border border-red-200 p-1 shadow-md">
         {hash}
+        <Copy
+          className="invisible ml-2 flex items-center justify-center p-1 shadow-md group-hover/item:visible"
+          value={hash}
+        >
+          <CopyIcon className="cursor-pointer" />
+        </Copy>
       </div>
-      <Copy className="invisible group-hover/item:visible" value={hash} />
     </div>
   )
 }
@@ -46,6 +54,7 @@ const HashGenerator: FC = () => {
         md5: MD5(input).toString(),
         sha1: SHA1(input).toString(),
         sha256: SHA256(input).toString(),
+        sha384: SHA384(input).toString(),
         sha512: SHA512(input).toString()
       })
     } catch (error) {

@@ -10,13 +10,16 @@ interface CopyProps {
   buttonProps?: ButtonProps
   className?: string
   showToast?: boolean
+
+  children?: React.ReactNode
 }
 
 const Copy: FC<CopyProps> = ({
   value,
   buttonProps = {},
   className = '',
-  showToast = false
+  showToast = true,
+  children
 }) => {
   const { toast } = useToast()
 
@@ -29,15 +32,23 @@ const Copy: FC<CopyProps> = ({
       })
   }
   return (
-    <Button
-      variant="outline"
-      {...buttonProps}
-      className={className}
-      onClick={onCopy}
-    >
-      <CopyIcon className="mr-2" />
-      Copy
-    </Button>
+    <>
+      {children ? (
+        <div onClick={onCopy} className={className}>
+          {children}
+        </div>
+      ) : (
+        <Button
+          variant="outline"
+          {...buttonProps}
+          className={className}
+          onClick={onCopy}
+        >
+          <CopyIcon className="mr-2 cursor-pointer" />
+          Copy
+        </Button>
+      )}
+    </>
   )
 }
 
