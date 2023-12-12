@@ -6,43 +6,28 @@ import parserTypescript from 'prettier/plugins/typescript'
 import { format } from 'prettier/standalone'
 import {
   InputData,
-  FetchingJSONSchemaStore,
-  JSONSchemaInput,
+  jsonInputForTargetLanguage,
   quicktype
 } from 'quicktype-core'
 import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 
 const sampleValue = `{
-  "title": "Example Schema",
-  "type": "object",
-  "properties": {
-    "firstName": {
-      "type": "string"
-    },
-    "lastName": {
-      "type": "string"
-    },
-    "age": {
-      "description": "Age in years",
-      "type": "integer",
-      "minimum": 0
-    },
-    "hairColor": {
-      "enum": ["black", "brown", "blue"],
-      "type": "string"
-    }
-  },
-  "additionalProperties": false,
-  "required": ["firstName", "lastName"]
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": 23,
+  "hairColor": "yellow"
 }`
 
-async function quicktypeJSONSchema(targetLanguage: string, typeName: string, jsonSchemaString: string) {
-  const schemaInput = new JSONSchemaInput(new FetchingJSONSchemaStore());
-  await schemaInput.addSource({ name: typeName, schema: jsonSchemaString });
+async function quicktypeJSON(targetLanguage: string, typeName: string, jsonString: string) {
+  const jsonInput = jsonInputForTargetLanguage(targetLanguage);
+  await jsonInput.addSource({
+    name: typeName,
+    samples: [jsonString]
+  });
 
   const inputData = new InputData();
-  inputData.addInput(schemaInput);
+  inputData.addInput(jsonInput);
 
   return await quicktype({
       inputData,
@@ -79,7 +64,7 @@ const JsonSchemaToTypescript: FC = () => {
       try {
         const json = JSON.parse(inputValue)
         const typeName = json?.title ? json.title.trim().replaceAll(/\s+/g, '') : 'ExampleType'
-        const tsData = await quicktypeJSONSchema('typescript', typeName, inputValue)
+        const tsData = await quicktypeJSON('typescript', typeName, inputValue)
         const ts = await formatTypescript(tsData.lines.join('\n'));
         setFormatOutput(ts)
         setInputResult('')
