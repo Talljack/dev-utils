@@ -1,6 +1,9 @@
 import CodeEditor from '@/components/CodeEditor'
 import CodeViewer from '@/components/CodeViewer'
 import { debounce } from 'lodash-es'
+import * as prettierPluginEstree from 'prettier/plugins/estree'
+import parserTypescript from 'prettier/plugins/typescript'
+import { format } from 'prettier/standalone'
 import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 
@@ -32,6 +35,16 @@ const JsonSchemaToTypescript: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [inputResult, setInputResult] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
+  const formatTypescript = (ts: string) => {
+    return format(ts, {
+      parser: 'typescript',
+      plugins: [parserTypescript, prettierPluginEstree],
+      useTabs: false,
+      semi: true,
+      trailingComma: 'none',
+      tabWidth: 2
+    })
+  }
   const jsonFormatter = debounce((inputValue: string) => {
     try {
       if (!inputValue) {
@@ -49,20 +62,22 @@ const JsonSchemaToTypescript: FC = () => {
             enableConstEnums: true,
             unreachableDefinitions: false,
             strictIndexSignatures: false,
-            format: false
+            format: false,
+            bannerComment: '',
+            maxItems: -1
           })
         )
         .then(ts => {
-          setFormatOutput(ts)
+          formatTypescript(ts).then(res => {
+            setFormatOutput(res)
+          })
           setInputResult('')
         })
-        .catch(err => {
-          console.log('here', err)
+        .catch(() => {
           setInputResult('Invalid JSON')
         })
     } catch (error) {
-      console.log('here11', error)
-      setFormatOutput('Invalid JSON')
+      setInputResult('Invalid JSON')
     }
   }, 300)
 
