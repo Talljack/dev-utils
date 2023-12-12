@@ -18,7 +18,7 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@icons/*": ["./src/icons/*"]
-    }
+    },
   },
   "include": ["./src"],
   "exclude": ["node_modules", "dist"]

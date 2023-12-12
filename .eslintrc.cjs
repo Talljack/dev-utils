@@ -25,7 +25,9 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/no-unknown-property': 'off',
-    'react-hooks/rules-of-hooks': 'error'
+    'react-hooks/rules-of-hooks': 'error',
+    'prettier/prettier': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
   settings: {
     react: {

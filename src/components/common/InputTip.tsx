@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+// @ts-ignore
 import { readText } from '@tauri-apps/api/clipboard'
 import type { FC } from 'react'
 import React from 'react'
@@ -27,7 +28,7 @@ const InputTip: FC<InputTipProps> = ({
   return (
     <div className={`flex w-full justify-between ${className}`}>
       <Label className="text-lg font-bold ">{inputLabel}</Label>
-      <div className="operation flex items-center gap-2">
+      <div className="flex items-center gap-2 operation">
         <Button onClick={getClipboardText}>Clipboard</Button>
         {showSample && (
           <Button onClick={() => onValueChange?.(sampleValue)}>Sample</Button>

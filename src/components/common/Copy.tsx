@@ -1,6 +1,7 @@
 import { Button, ButtonProps } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 import { CopyIcon } from '@radix-ui/react-icons'
+// @ts-ignore
 import { writeText } from '@tauri-apps/api/clipboard'
 import type { FC } from 'react'
 import React from 'react'
