@@ -64,7 +64,7 @@ const HashGenerator: FC = () => {
   return (
     <div className="mt-4 flex h-full gap-8">
       <div className="input flex w-[400px] flex-col gap-4">
-        <InputTip onValueChange={setInput} sampleValue="test" />
+        <InputTip value={input} onValueChange={setInput} sampleValue="test" />
         <Textarea
           className="flex-1"
           placeholder={`Enter your text here`}

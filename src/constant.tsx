@@ -1,6 +1,7 @@
 import UtilBase64Decode from '@/pages/utils/Base64Decode'
 import UtilBase64Encode from '@/pages/utils/Base64Encode'
 import UtilColorConverter from '@/pages/utils/ColorConverter'
+import UtilCssFormatter from '@/pages/utils/CssFormatter'
 import UtilHashGenerator from '@/pages/utils/HashGenerator'
 import UtilJSFormatter from '@/pages/utils/JSFormatter'
 import UtilJsonDiff from '@/pages/utils/JsonDiff'
@@ -48,6 +49,11 @@ export const utilMap: UtilItem[] = [
     name: 'JS Formatter',
     path: '/utils/js-formatter',
     paramId: 'js-formatter'
+  },
+  {
+    name: 'CSS Formatter',
+    path: '/utils/css-formatter',
+    paramId: 'css-formatter'
   }
 ]
 
@@ -59,5 +65,6 @@ export const utilsIdPageMap = {
   'color-converter': <UtilColorConverter />,
   'timestamp-converter': <UtilTimestampConverter />,
   'hash-generator': <UtilHashGenerator />,
-  'js-formatter': <UtilJSFormatter />
+  'js-formatter': <UtilJSFormatter />,
+  'css-formatter': <UtilCssFormatter />
 }

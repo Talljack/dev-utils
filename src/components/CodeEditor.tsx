@@ -50,6 +50,7 @@ const CodeEditor: FC<Props> = ({
   return (
     <div className="flex h-full flex-1 flex-col items-center">
       <InputTip
+        value={code}
         sampleValue={sampleValue}
         onValueChange={onChange}
         className="mb-4"

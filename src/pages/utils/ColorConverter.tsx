@@ -413,7 +413,11 @@ const ColorConverter: FC = () => {
   return (
     <div className="mt-4 flex h-full gap-8">
       <div className="input flex flex-1 flex-col gap-4">
-        <InputTip onValueChange={setInput} sampleValue="#4fb233" />
+        <InputTip
+          value={input}
+          onValueChange={setInput}
+          sampleValue="#4fb233"
+        />
         <Textarea
           className="flex-1"
           placeholder={`Enter a color value in HEX, RGB, HSL, CMYK or Color keyword.`}
