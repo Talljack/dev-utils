@@ -38,7 +38,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.292.0",
-    "monaco-editor": "^0.44.0",
+    "monaco-editor": "^0.45.0",
     "monaco-editor-component": "^0.0.8",
     "picocolors": "^1.0.0",
     "react": "^18.2.0",

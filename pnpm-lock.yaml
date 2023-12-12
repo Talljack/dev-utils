@@ -54,8 +54,8 @@ dependencies:
     specifier: ^0.292.0
     version: 0.292.0(react@18.2.0)
   monaco-editor:
-    specifier: ^0.44.0
-    version: 0.44.0
+    specifier: ^0.45.0
+    version: 0.45.0
   monaco-editor-component:
     specifier: ^0.0.8
     version: 0.0.8(typescript@5.3.3)
@@ -3835,10 +3835,6 @@ packages:
     transitivePeerDependencies:
       - ts-node
       - typescript
-    dev: false
-
-  /monaco-editor@0.44.0:
-    resolution: {integrity: sha512-5SmjNStN6bSuSE5WPT2ZV+iYn1/yI9sd4Igtk23ChvqB7kDk9lZbB9F5frsuvpB+2njdIeGGFf2G4gbE6rCC9Q==}
     dev: false
 
   /monaco-editor@0.45.0:
