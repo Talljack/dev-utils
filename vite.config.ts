@@ -21,8 +21,6 @@ export default defineConfig({
     'TAURI_PLATFORM_TYPE',
     'TAURI_DEBUG'
   ],
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   plugins: [viteTsconfigPaths(), svgr(), react()],
   build: {
     // Tauri uses Chromium on Windows and WebKit on macOS and Linux

@@ -6,6 +6,7 @@ import UtilHashGenerator from '@/pages/utils/HashGenerator'
 import UtilJSFormatter from '@/pages/utils/JSFormatter'
 import UtilJsonDiff from '@/pages/utils/JsonDiff'
 import UtilJsonFormatter from '@/pages/utils/JsonFormatter'
+import UtilJsonSchemaToTypescript from '@/pages/utils/JsonSchemaToTypescript'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
 import type { UtilItem } from '@/type'
 import React from 'react'
@@ -54,6 +55,11 @@ export const utilMap: UtilItem[] = [
     name: 'CSS Formatter',
     path: '/utils/css-formatter',
     paramId: 'css-formatter'
+  },
+  {
+    name: 'JSON Schema to TypeScript',
+    path: '/utils/json-schema-to-typescript',
+    paramId: 'json-schema-to-typescript'
   }
 ]
 
@@ -66,5 +72,6 @@ export const utilsIdPageMap = {
   'timestamp-converter': <UtilTimestampConverter />,
   'hash-generator': <UtilHashGenerator />,
   'js-formatter': <UtilJSFormatter />,
-  'css-formatter': <UtilCssFormatter />
+  'css-formatter': <UtilCssFormatter />,
+  'json-schema-to-typescript': <UtilJsonSchemaToTypescript />
 }
