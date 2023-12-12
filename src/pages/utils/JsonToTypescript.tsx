@@ -41,7 +41,7 @@ async function quicktypeJSON(targetLanguage: string, typeName: string, jsonStrin
   });
 }
 
-const JsonSchemaToTypescript: FC = () => {
+const JsonToTypescript: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [inputResult, setInputResult] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
@@ -62,9 +62,7 @@ const JsonSchemaToTypescript: FC = () => {
         return
       }
       try {
-        const json = JSON.parse(inputValue)
-        const typeName = json?.title ? json.title.trim().replaceAll(/\s+/g, '') : 'ExampleType'
-        const tsData = await quicktypeJSON('typescript', typeName, inputValue)
+        const tsData = await quicktypeJSON('typescript', 'MyType', inputValue)
         const ts = await formatTypescript(tsData.lines.join('\n'));
         setFormatOutput(ts)
         setInputResult('')
@@ -108,4 +106,4 @@ const JsonSchemaToTypescript: FC = () => {
   )
 }
 
-export default JsonSchemaToTypescript
+export default JsonToTypescript
