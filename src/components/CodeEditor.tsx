@@ -1,9 +1,9 @@
 import type {
   MonacoCodeEditorLanguage,
+  MonacoEditorOptions,
   MonacoEditorProps
 } from 'monaco-editor-component/react'
 import { MonacoEditor } from 'monaco-editor-component/react'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import React, { FC } from 'react'
 import InputTip from './common/InputTip'
 
@@ -11,7 +11,7 @@ interface Props {
   code: string
   className?: string
   language?: MonacoCodeEditorLanguage
-  options?: monaco.editor.IStandaloneEditorConstructionOptions
+  options?: MonacoEditorOptions
   onChange?: (value: string) => void
   width?: MonacoEditorProps['width']
   height?: MonacoEditorProps['height']
@@ -20,7 +20,7 @@ interface Props {
   inputResult?: string
 }
 
-const defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
+const defaultOptions: MonacoEditorOptions = {
   theme: 'vs-dark',
   formatOnPaste: true,
   automaticLayout: true,
