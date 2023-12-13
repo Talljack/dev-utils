@@ -12,6 +12,7 @@ export interface InputTipProps {
   sampleValue?: string
   className?: string
   inputLabel?: string
+  showOperation?: boolean
 }
 const InputTip: FC<InputTipProps> = ({
   onValueChange,
@@ -19,7 +20,8 @@ const InputTip: FC<InputTipProps> = ({
   sampleValue = '',
   className = '',
   inputLabel = 'Input:',
-  value
+  value,
+  showOperation = true
 }) => {
   const getClipboardText = async () => {
     const clipboardText = await readText()
@@ -28,7 +30,7 @@ const InputTip: FC<InputTipProps> = ({
   return (
     <div className={`flex w-full justify-between ${className}`}>
       <Label className="text-lg font-bold ">{inputLabel}</Label>
-      <div className="flex items-center gap-2 operation">
+      <div className={`flex items-center gap-2 operation ${showOperation ? 'visible' : 'invisible'}`}>
         <Button onClick={getClipboardText}>Clipboard</Button>
         {showSample && (
           <Button onClick={() => onValueChange?.(sampleValue)}>Sample</Button>

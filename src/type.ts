@@ -5,3 +5,5 @@ export type UtilItem = {
   icon?: ReactNode
   paramId: string
 }
+
+export type DecodeType = 'base64' | 'base64url' | 'uri' | 'uri_component'
