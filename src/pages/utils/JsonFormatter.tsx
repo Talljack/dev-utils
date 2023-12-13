@@ -31,7 +31,7 @@ const JsonFormatter: FC = () => {
 
   return (
     <div className="flex h-full">
-      <div className="flex w-full justify-between py-4">
+      <div className="flex justify-between w-full py-4">
         <CodeEditor
           code={userInput}
           onChange={(value: string) => {

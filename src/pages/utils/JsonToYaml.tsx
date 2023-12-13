@@ -1,43 +1,22 @@
 import CodeEditor from '@/components/CodeEditor'
 import CodeViewer from '@/components/CodeViewer'
 import { debounce } from 'lodash-es'
-import {
-  InputData,
-  jsonInputForTargetLanguage,
-  quicktype
-} from 'quicktype-core'
 import type { FC } from 'react'
+// @ts-ignore
+import * as j2y from 'json2yaml';
 import React, { useEffect, useState } from 'react'
 
 const sampleValue = `{
   "firstName": "John",
-  "lastName": "Doe",
-  "age": 23,
-  "hairColor": "yellow"
+  "info": {
+    "age": 36,
+    "job": "engineer"
+  },
+  "hobbies": ["football", "video games"]
 }`
 
-async function quicktypeJSON(targetLanguage: string, typeName: string, jsonString: string) {
-  const jsonInput = jsonInputForTargetLanguage(targetLanguage);
-  await jsonInput.addSource({
-    name: typeName,
-    samples: [jsonString]
-  });
 
-  const inputData = new InputData();
-  inputData.addInput(jsonInput);
-
-  return await quicktype({
-      inputData,
-      lang: targetLanguage,
-      rendererOptions: {
-        'density': 'dense',
-        'edition': '2018',
-        'leading-comments': false,
-      }
-  });
-}
-
-const JsonToRust: FC = () => {
+const JsonToYaml: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [inputResult, setInputResult] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
@@ -49,9 +28,9 @@ const JsonToRust: FC = () => {
         return
       }
       try {
-        const rustData = await quicktypeJSON('rust', 'MyType', inputValue)
-        const rustCode = rustData.lines.join('\n')
-        setFormatOutput(rustCode)
+        const jsonData = JSON.parse(inputValue);
+        const yamlCode = j2y.stringify(jsonData);
+        setFormatOutput(yamlCode)
         setInputResult('')
       } catch (error) {
         setInputResult('Invalid JSON')
@@ -93,4 +72,4 @@ const JsonToRust: FC = () => {
   )
 }
 
-export default JsonToRust
+export default JsonToYaml
