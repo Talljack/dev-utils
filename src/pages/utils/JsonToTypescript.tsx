@@ -58,6 +58,7 @@ const JsonToTypescript: FC = () => {
   const jsonFormatter = debounce(async (inputValue: string) => {
     try {
       if (!inputValue) {
+        setInputResult('')
         setFormatOutput('')
         return
       }
