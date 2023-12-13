@@ -1,45 +1,105 @@
-import Copy from '@/components/common/Copy'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
+import TextEditor from '@/components/TextEditor'
+import Select from '@/components/common/Select'
 import type { FC } from 'react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import type { DecodeType } from '@/type'
+
+const decodeTypeOptions = [
+  { label: 'Base64', value: 'base64' },
+  { label: 'Base64 URL', value: 'base64url' },
+  { label: 'URI', value: 'uri' },
+  { label: 'URI Component', value: 'uri_component' }
+]
 
 const Base64Decode: FC = () => {
-  const [input, setInput] = useState('')
-  const [result, setResult] = useState('')
-
-  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInput(e.target.value)
+  const [userInput, setUserInput] = useState('')
+  const [formatOutput, setFormatOutput] = useState('')
+  const [inputResult, setInputResult] = useState('')
+  const [decodeType, setDecodeType] = useState<DecodeType>('base64')
+  const decodeBase64 = (input: string) => {
+    try {
+      const result = atob(input)
+      setInputResult('')
+      return result
+    } catch (error) {
+      setInputResult('Invalid decoded string')
+      return input
+    }
+  }
+  const decodeBase64Url = (input: string) => {
+    try {
+      const result = atob(input.replace(/-/g, '+').replace(/_/g, '/'))
+      setInputResult('')
+      return result
+    } catch (error) {
+      setInputResult('Invalid decoded string')
+      return input
+    }
   }
 
-  const decode = () => {
-    const decoded = atob(input)
-    setResult(decoded)
+  const decodeURIStr = (input: string) => {
+    try {
+      const result = decodeURI(input)
+      setInputResult('')
+      return result
+    } catch (error) {
+      setInputResult('Invalid decoded string')
+      return input
+    }
   }
+
+  const decodeURIComponentStr = (input: string) => {
+    try {
+      const result = decodeURIComponent(input)
+      setInputResult('')
+      return result
+    } catch (error) {
+      setInputResult('Invalid decoded string')
+      return input
+    }
+  }
+
+  useEffect(() => {
+    switch (decodeType) {
+      case 'base64':
+        setFormatOutput(decodeBase64(userInput))
+        break
+      case 'base64url':
+        setFormatOutput(decodeBase64Url(userInput))
+        break
+      case 'uri':
+        setFormatOutput(decodeURIStr(userInput))
+        break
+      case 'uri_component':
+        setFormatOutput(decodeURIComponentStr(userInput))
+        break
+      default:
+        setFormatOutput(decodeBase64(userInput));
+    }
+  }, [userInput, decodeType])
 
   return (
-    <div className="flex flex-col">
-      <div className="grid w-full gap-2 py-4">
-        <Label>Base64 Decode Input:</Label>
-        <Textarea
-          className="min-h-[120px]"
-          placeholder="Please input original text"
-          onChange={handleInput}
+    <div className="flex flex-col h-full">
+      <Select options={decodeTypeOptions} value={decodeType} onChange={(value) => setDecodeType(value as DecodeType)} />
+      <div className="flex justify-between flex-1 w-full gap-4 py-4">
+        <TextEditor
+          value={userInput}
+          onChange={(value: string) => {
+            setUserInput(value)
+          }}
+          showSample={false}
+          placeHolder='Enter the text to decode...'
+          className='h-full text-white bg-black'
+          inputResult={inputResult}
         />
-        <Button onClick={decode}>Decode</Button>
-      </div>
-      <div className="result mt-8">
-        <div className="mb-2 flex items-center justify-between">
-          <Label>Base64 Decode Output:</Label>
-          <Copy
-            value={result}
-            buttonProps={{
-              variant: 'default'
-            }}
-          />
-        </div>
-        <Textarea value={result} readOnly className="min-h-[120px]" />
+        <TextEditor
+          value={formatOutput}
+          readOnly={true}
+          className='h-full text-white bg-black'
+          placeHolder=''
+          inputLabel='Output:'
+          showOperation={false}
+        />
       </div>
     </div>
   )

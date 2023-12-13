@@ -7,19 +7,21 @@ import React, { useCallback, useEffect, useState } from 'react'
 const JsonFormatter: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
+  const [inputResult, setInputResult] = useState('')
   const [space, setSpace] = useState(2)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const jsonFormatter = useCallback(
     debounce((inputValue: string) => {
       try {
         if (!inputValue) {
+          setInputResult('')
           setFormatOutput('')
           return
         }
         const json = JSON.parse(inputValue)
         setFormatOutput(JSON.stringify(json, null, space))
       } catch (error) {
-        setFormatOutput('Invalid JSON')
+        setInputResult('Invalid JSON')
       }
     }, 300),
     [space, setFormatOutput]
@@ -40,6 +42,7 @@ const JsonFormatter: FC = () => {
           options={{
             readOnly: false
           }}
+          inputResult={inputResult}
           language="json"
           sampleValue='{"name":"John","age":30,"city":"New York"}'
         />

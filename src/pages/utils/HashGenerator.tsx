@@ -1,12 +1,12 @@
 import Copy from '@/components/common/Copy'
 import InputTip from '@/components/common/InputTip'
 import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
 import { CopyIcon } from '@radix-ui/react-icons'
 import { MD5, SHA1, SHA256, SHA384, SHA512 } from 'crypto-js'
 import { cloneDeep } from 'lodash-es'
 import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
+import { MonacoEditor } from 'monaco-editor-component/react'
 
 type HashResultType = {
   md5: string
@@ -26,12 +26,12 @@ const initialResult: HashResultType = {
 
 const renderHashItem = (hash: string, type: string) => {
   return (
-    <div className="hash-item group/item flex w-full flex-wrap">
-      <Label>{type}</Label>
-      <div className="hash-show mt-1 flex w-full flex-wrap border border-red-200 p-1 shadow-md">
-        {hash}
+    <div className="flex flex-wrap w-full hash-item group/item">
+      <Label className='text-lg '>{type}</Label>
+      <div className="flex justify-between w-full p-1 mt-1 border border-red-200 shadow-md hash-show">
+        <span className='w-[650px] overflow-hidden text-ellipsis whitespace-nowrap'>{hash}</span>
         <Copy
-          className="invisible ml-2 flex items-center justify-center p-1 shadow-md group-hover/item:visible"
+          className="flex items-center justify-center p-1 ml-2 shadow-md"
           value={hash}
         >
           <CopyIcon className="cursor-pointer" />
@@ -62,17 +62,15 @@ const HashGenerator: FC = () => {
     }
   }, [input])
   return (
-    <div className="mt-4 flex h-full gap-8">
-      <div className="input flex w-[400px] flex-col gap-4">
+    <div className="flex h-full gap-8 mt-4">
+      <div className="input flex w-[450px] shrink-0 flex-col gap-4">
         <InputTip value={input} onValueChange={setInput} sampleValue="test" />
-        <Textarea
-          className="flex-1"
-          placeholder={`Enter your text here`}
+        <MonacoEditor
           value={input}
-          onChange={e => setInput(e.target.value)}
+          onChange={setInput}
         />
       </div>
-      <div className="output flex flex-1 flex-col gap-4">
+      <div className="flex flex-col flex-1 gap-4 output">
         <Label className="text-lg font-bold ">Output:</Label>
         {result.md5 && (
           <>
