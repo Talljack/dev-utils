@@ -7,6 +7,7 @@ import UtilJSFormatter from '@/pages/utils/JSFormatter'
 import UtilJsonDiff from '@/pages/utils/JsonDiff'
 import UtilJsonFormatter from '@/pages/utils/JsonFormatter'
 import UtilJsonSchemaToTypescript from '@/pages/utils/JsonSchemaToTypescript'
+import UtilJsonToRust from '@/pages/utils/JsonToRust'
 import UtilJsonToTypescript from '@/pages/utils/JsonToTypescript'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
 import type { UtilItem } from '@/type'
@@ -66,6 +67,11 @@ export const utilMap: UtilItem[] = [
     name: 'JSON to TypeScript',
     path: '/utils/json-to-typescript',
     paramId: 'json-to-typescript'
+  },
+  {
+    name: 'JSON to Rust',
+    path: '/utils/json-to-rust',
+    paramId: 'json-to-rust'
   }
 ]
 
@@ -80,5 +86,6 @@ export const utilsIdPageMap = {
   'js-formatter': <UtilJSFormatter />,
   'css-formatter': <UtilCssFormatter />,
   'json-schema-to-typescript': <UtilJsonSchemaToTypescript />,
-  'json-to-typescript': <UtilJsonToTypescript />
+  'json-to-typescript': <UtilJsonToTypescript />,
+  'json-to-rust': <UtilJsonToRust />
 }
