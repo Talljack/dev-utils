@@ -4,6 +4,7 @@ import { Label } from '@/components/ui/label'
 import { readText } from '@tauri-apps/api/clipboard'
 import type { FC } from 'react'
 import React from 'react'
+import Copy from './Copy'
 
 export interface InputTipProps {
   value?: string
@@ -13,6 +14,7 @@ export interface InputTipProps {
   className?: string
   inputLabel?: string
   showOperation?: boolean
+  showCopy?: boolean
 }
 const InputTip: FC<InputTipProps> = ({
   onValueChange,
@@ -21,7 +23,8 @@ const InputTip: FC<InputTipProps> = ({
   className = '',
   inputLabel = 'Input:',
   value,
-  showOperation = true
+  showOperation = true,
+  showCopy = false
 }) => {
   const getClipboardText = async () => {
     const clipboardText = await readText()
@@ -37,6 +40,11 @@ const InputTip: FC<InputTipProps> = ({
         )}
         {value && <Button onClick={() => onValueChange?.('')}>Clear</Button>}
       </div>
+      {
+        showCopy && value && (
+          <Copy value={value}></Copy>
+        )
+      }
     </div>
   )
 }

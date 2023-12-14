@@ -87,6 +87,7 @@ const Base64Encode: FC = () => {
           inputLabel='Output:'
           placeHolder=''
           showOperation={false}
+          showCopy={true}
         />
       </div>
     </div>

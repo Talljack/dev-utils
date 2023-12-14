@@ -99,6 +99,7 @@ const Base64Decode: FC = () => {
           placeHolder=''
           inputLabel='Output:'
           showOperation={false}
+          showCopy={true}
         />
       </div>
     </div>
