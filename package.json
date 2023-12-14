@@ -43,7 +43,6 @@
     "monaco-editor": "^0.45.0",
     "monaco-editor-component": "^0.0.8",
     "picocolors": "^1.0.0",
-    "quicktype": "^23.0.80",
     "quicktype-core": "^23.0.80",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -55,7 +54,6 @@
   },
   "devDependencies": {
     "@actions/github": "^6.0.0",
-    "@svgr/core": "^8.1.0",
     "@tauri-apps/cli": "^1.5.7",
     "@tauri-release/cli": "^0.2.5",
     "@types/crypto-js": "^4.2.1",

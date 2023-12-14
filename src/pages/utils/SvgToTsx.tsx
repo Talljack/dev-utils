@@ -1,7 +1,6 @@
 import CodeEditor from '@/components/CodeEditor'
 import CodeViewer from '@/components/CodeViewer'
 import { debounce } from 'lodash-es'
-import { transform } from '@svgr/core'
 import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 
@@ -11,11 +10,24 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
   style="stroke:#ff0000; fill: #0000ff"/>
 </svg>`;
 
+const svgr = async (code: string, options = {}) => {
+  const res = await fetch('https://api.react-svgr.com/api/svgr', {
+    headers: {
+      'content-type': 'application/json',
+    },
+    method: 'post',
+    body: JSON.stringify({ code, options }),
+  })
+  const json = await res.json()
+  if (json.error) throw new Error(json.error)
+  return json.output
+}
+
 const SVGToTSX: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [inputResult, setInputResult] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
-  const jsonFormatter = debounce(async (inputValue: string) => {
+  const jsonFormatter = debounce((inputValue: string) => {
     try {
       if (!inputValue) {
         setInputResult('')
@@ -23,18 +35,17 @@ const SVGToTSX: FC = () => {
         return
       }
       try {
-        const jsCode = await transform(
-          inputValue,
-          { icon: true, typescript: true },
-          { componentName: 'MyComponent' },
-        )
-        setFormatOutput(jsCode)
-        setInputResult('')
+        svgr(inputValue, { icon: true, typescript: true }).then((tsxCode) => {
+          setFormatOutput(tsxCode)
+          setInputResult('')
+        }).catch(() => {
+          setInputResult('Invalid SVG')
+        })
       } catch (error) {
-        setInputResult('Invalid JSON')
+        setInputResult('Invalid SVG')
       }
     } catch (error) {
-      setInputResult('Invalid JSON')
+      setInputResult('Invalid SVG')
     }
   }, 300)
 
