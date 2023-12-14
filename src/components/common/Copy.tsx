@@ -40,7 +40,6 @@ const Copy: FC<CopyProps> = ({
         </div>
       ) : (
         <Button
-          variant="outline"
           {...buttonProps}
           className={className}
           onClick={onCopy}

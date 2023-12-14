@@ -8,6 +8,7 @@ import UtilJsonDiff from '@/pages/utils/JsonDiff'
 import UtilJsonFormatter from '@/pages/utils/JsonFormatter'
 import UtilJsonSchemaToTypescript from '@/pages/utils/JsonSchemaToTypescript'
 import UtilJsonToRust from '@/pages/utils/JsonToRust'
+import UtilJsonToToml from '@/pages/utils/JsonToToml'
 import UtilJsonToTypescript from '@/pages/utils/JsonToTypescript'
 import UtilJsonToYaml from '@/pages/utils/JsonToYaml'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
@@ -78,6 +79,11 @@ export const utilMap: UtilItem[] = [
     name: 'JSON to yaml',
     path: '/utils/json-to-yaml',
     paramId: 'json-to-yaml'
+  },
+  {
+    name: 'JSON to Toml',
+    path: '/utils/json-to-toml',
+    paramId: 'json-to-toml'
   }
 ]
 
@@ -94,5 +100,6 @@ export const utilsIdPageMap = {
   'json-schema-to-typescript': <UtilJsonSchemaToTypescript />,
   'json-to-typescript': <UtilJsonToTypescript />,
   'json-to-rust': <UtilJsonToRust />,
-  'json-to-yaml': <UtilJsonToYaml />
+  'json-to-yaml': <UtilJsonToYaml />,
+  'json-to-toml': <UtilJsonToToml />
 }

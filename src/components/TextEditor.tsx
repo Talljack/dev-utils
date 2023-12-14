@@ -13,6 +13,7 @@ interface Props {
   placeHolder?: string
   showOperation?: boolean
   showSample?: boolean
+  showCopy?: boolean
 }
 
 const TextEditor: FC<Props> = ({
@@ -25,7 +26,8 @@ const TextEditor: FC<Props> = ({
   readOnly = false,
   placeHolder = 'Please input here',
   showOperation = true,
-  showSample = true
+  showSample = true,
+  showCopy = false
 }) => {
   return (
     <div className="flex flex-col items-center flex-1 h-full">
@@ -37,6 +39,7 @@ const TextEditor: FC<Props> = ({
         inputLabel={inputLabel}
         showOperation={showOperation}
         showSample={showSample}
+        showCopy={showCopy}
       />
       <div className="flex flex-1 w-full">
         <Textarea placeholder={placeHolder} className={className} value={value} readOnly={readOnly} onChange={e => onChange(e.target.value)} />
