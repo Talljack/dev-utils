@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "@actions/github": "^6.0.0",
+    "@svgr/core": "^8.1.0",
     "@tauri-apps/cli": "^1.5.7",
     "@tauri-release/cli": "^0.2.5",
     "@types/crypto-js": "^4.2.1",

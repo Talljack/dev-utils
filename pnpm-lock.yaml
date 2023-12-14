@@ -100,6 +100,9 @@ devDependencies:
   '@actions/github':
     specifier: ^6.0.0
     version: 6.0.0
+  '@svgr/core':
+    specifier: ^8.1.0
+    version: 8.1.0(typescript@5.3.3)
   '@tauri-apps/cli':
     specifier: ^1.5.7
     version: 1.5.7
