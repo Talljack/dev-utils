@@ -11,6 +11,7 @@ import UtilJsonToRust from '@/pages/utils/JsonToRust'
 import UtilJsonToToml from '@/pages/utils/JsonToToml'
 import UtilJsonToTypescript from '@/pages/utils/JsonToTypescript'
 import UtilJsonToYaml from '@/pages/utils/JsonToYaml'
+import UtilScssFormatter from '@/pages/utils/ScssFormatter'
 import UtilSvgToTsx from '@/pages/utils/SvgToTsx'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
 import UtilTomlToJson from '@/pages/utils/TomlToJson'
@@ -62,6 +63,11 @@ export const utilMap: UtilItem[] = [
     name: 'CSS Formatter',
     path: '/utils/css-formatter',
     paramId: 'css-formatter'
+  },
+  {
+    name: 'SCSS Formatter',
+    path: '/utils/scss-formatter',
+    paramId: 'scss-formatter'
   },
   {
     name: 'JSON Schema to TypeScript',
@@ -122,5 +128,6 @@ export const utilsIdPageMap = {
   'json-to-toml': <UtilJsonToToml />,
   'svg-to-tsx': <UtilSvgToTsx />,
   'yaml-to-json': <UtilYamlToJson />,
-  'toml-to-json': <UtilTomlToJson />
+  'toml-to-json': <UtilTomlToJson />,
+  'scss-formatter': <UtilScssFormatter />
 }
