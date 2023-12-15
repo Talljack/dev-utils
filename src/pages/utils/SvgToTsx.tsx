@@ -27,7 +27,7 @@ const SVGToTSX: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [inputResult, setInputResult] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
-  const jsonFormatter = debounce((inputValue: string) => {
+  const convertSvgToTsx = debounce(async (inputValue: string) => {
     try {
       if (!inputValue) {
         setInputResult('')
@@ -35,12 +35,9 @@ const SVGToTSX: FC = () => {
         return
       }
       try {
-        svgr(inputValue, { icon: true, typescript: true }).then((tsxCode) => {
-          setFormatOutput(tsxCode)
-          setInputResult('')
-        }).catch(() => {
-          setInputResult('Invalid SVG')
-        })
+        const tsxCode = await svgr(inputValue, { icon: true, typescript: true })
+        setFormatOutput(tsxCode)
+        setInputResult('')
       } catch (error) {
         setInputResult('Invalid SVG')
       }
@@ -50,8 +47,8 @@ const SVGToTSX: FC = () => {
   }, 300)
 
   useEffect(() => {
-    jsonFormatter(userInput)
-  }, [userInput, jsonFormatter])
+    convertSvgToTsx(userInput)
+  }, [userInput, convertSvgToTsx])
 
   return (
     <div className="flex h-full">
@@ -62,9 +59,11 @@ const SVGToTSX: FC = () => {
             setUserInput(value)
           }}
           options={{
-            readOnly: false
+            lineDecorationsWidth: 0,
+            lineNumbersMinChars: 0,
+            fontSize: 16
           }}
-          language="html"
+          language='html'
           inputResult={inputResult}
           sampleValue={sampleValue}
         />
@@ -72,7 +71,10 @@ const SVGToTSX: FC = () => {
           code={formatOutput}
           showSpace={false}
           options={{
-            readOnly: true
+            readOnly: true,
+            lineDecorationsWidth: 0,
+            lineNumbersMinChars: 0,
+            fontSize: 16
           }}
           language="typescript"
         />
