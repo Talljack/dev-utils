@@ -1,6 +1,5 @@
 import CodeEditor from '@/components/CodeEditor'
 import { Button } from '@/components/ui/button'
-import '@/worker'
 import { MonacoDiffEditor } from 'monaco-editor-component/react'
 import type { FC } from 'react'
 import React, { useState } from 'react'

@@ -48,7 +48,7 @@ const CodeEditor: FC<Props> = ({
   inputResult
 }) => {
   return (
-    <div className="flex h-full flex-1 flex-col items-center">
+    <div className="flex flex-col items-center flex-1 h-full">
       <InputTip
         value={code}
         sampleValue={sampleValue}
@@ -56,7 +56,7 @@ const CodeEditor: FC<Props> = ({
         className="mb-4"
         inputLabel={inputLabel}
       />
-      <div className="flex w-full flex-1">
+      <div className="flex flex-1 w-full">
         <MonacoEditor
           className={`${className}`}
           value={code}
@@ -68,7 +68,7 @@ const CodeEditor: FC<Props> = ({
         />
       </div>
       {inputResult && (
-        <div className="mt-4 h-10 w-full bg-black p-2 text-red-700">
+        <div className="w-full h-10 p-2 mt-4 text-red-700 bg-black">
           {inputResult}
         </div>
       )}

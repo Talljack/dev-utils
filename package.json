@@ -41,9 +41,8 @@
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.292.0",
     "monaco-editor": "^0.45.0",
-    "monaco-editor-component": "^0.0.8",
+    "monaco-editor-component": "^0.0.9",
     "picocolors": "^1.0.0",
-    "quicktype": "^23.0.80",
     "quicktype-core": "^23.0.80",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -78,6 +77,7 @@
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3",
     "vite": "^5.0.7",
+    "vite-plugin-monaco-editor": "^1.1.0",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.2"
   },
