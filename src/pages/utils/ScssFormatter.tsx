@@ -7,7 +7,9 @@ import * as prettier from 'prettier/standalone'
 import type { FC } from 'react'
 import React, { useCallback, useEffect, useState } from 'react'
 
-const CssFormatter: FC = () => {
+const sampleValue = `.test {color: red;&:hover {color: blue;}}`
+
+const ScssFormatter: FC = () => {
   const [userInput, setUserInput] = useState('')
   const [inputResult, setInputResult] = useState('')
   const [formatOutput, setFormatOutput] = useState('')
@@ -22,7 +24,7 @@ const CssFormatter: FC = () => {
         }
         prettier
           .format(inputValue, {
-            parser: 'css',
+            parser: 'scss',
             plugins: [parserPostcss, prettierPluginEstree],
             singleQuote: true,
             trailingComma: 'none',
@@ -33,10 +35,10 @@ const CssFormatter: FC = () => {
             setInputResult('')
           })
           .catch(() => {
-            setInputResult('Invalid CSS Code')
+            setInputResult('Invalid SCSS Code')
           })
       } catch (error) {
-        setInputResult('Invalid CSS Code')
+        setInputResult('Invalid SCSS Code')
       }
     }, 300),
     [setFormatOutput]
@@ -58,8 +60,8 @@ const CssFormatter: FC = () => {
             readOnly: false
           }}
           inputResult={inputResult}
-          language="css"
-          sampleValue=".test {color: red;}"
+          language="scss"
+          sampleValue={sampleValue}
         />
         <CodeViewer
           code={formatOutput}
@@ -67,11 +69,11 @@ const CssFormatter: FC = () => {
           options={{
             readOnly: true
           }}
-          language="css"
+          language="scss"
         />
       </div>
     </div>
   )
 }
 
-export default CssFormatter
+export default ScssFormatter
