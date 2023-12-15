@@ -13,6 +13,7 @@ import UtilJsonToTypescript from '@/pages/utils/JsonToTypescript'
 import UtilJsonToYaml from '@/pages/utils/JsonToYaml'
 import UtilSvgToTsx from '@/pages/utils/SvgToTsx'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
+import UtilTomlToJson from '@/pages/utils/TomlToJson'
 import UtilYamlToJson from '@/pages/utils/YamlToJson'
 import type { UtilItem } from '@/type'
 import React from 'react'
@@ -93,6 +94,11 @@ export const utilMap: UtilItem[] = [
     paramId: 'yaml-to-json'
   },
   {
+    name: 'Toml to JSON',
+    path: '/utils/toml-to-json',
+    paramId: 'toml-to-json'
+  },
+  {
     name: 'SVG to TSX',
     path: '/utils/svg-to-tsx',
     paramId: 'svg-to-tsx'
@@ -115,5 +121,6 @@ export const utilsIdPageMap = {
   'json-to-yaml': <UtilJsonToYaml />,
   'json-to-toml': <UtilJsonToToml />,
   'svg-to-tsx': <UtilSvgToTsx />,
-  'yaml-to-json': <UtilYamlToJson />
+  'yaml-to-json': <UtilYamlToJson />,
+  'toml-to-json': <UtilTomlToJson />
 }
