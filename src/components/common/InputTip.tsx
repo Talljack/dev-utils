@@ -1,12 +1,11 @@
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 // @ts-ignore
-import { readText } from '@tauri-apps/api/clipboard'
-import type { FC } from 'react'
-import React from 'react'
+import { readText } from '@tauri-apps/plugin-clipboard-manager'
+import type { FC, PropsWithChildren } from 'react'
 import Copy from './Copy'
 
-export interface InputTipProps {
+export interface InputTipProps extends PropsWithChildren {
   value?: string
   onValueChange?: (value: string) => void
   showSample?: boolean
@@ -24,7 +23,8 @@ const InputTip: FC<InputTipProps> = ({
   inputLabel = 'Input:',
   value,
   showOperation = true,
-  showCopy = false
+  showCopy = false,
+  children,
 }) => {
   const getClipboardText = async () => {
     const clipboardText = await readText()
@@ -34,6 +34,7 @@ const InputTip: FC<InputTipProps> = ({
     <div className={`flex w-full justify-between ${className}`}>
       <Label className="text-lg font-bold ">{inputLabel}</Label>
       <div className={`flex items-center gap-2 operation ${showOperation ? 'visible' : 'invisible'}`}>
+        {children}
         <Button onClick={getClipboardText}>Clipboard</Button>
         {showSample && (
           <Button onClick={() => onValueChange?.(sampleValue)}>Sample</Button>
