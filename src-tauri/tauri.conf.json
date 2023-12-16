@@ -11,57 +11,17 @@
     "productName": "DevUtils",
     "version": "0.3.5"
   },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "dialog": {
-        "all": false,
-        "ask": false,
-        "confirm": false,
-        "message": false,
-        "open": true,
-        "save": false
-      },
-      "fs": {
-        "all": false,
-        "copyFile": true,
-        "createDir": false,
-        "exists": true,
-        "readDir": true
-      },
-      "http": {
-        "all": false,
-        "request": true,
-        "scope": ["https://api.openai.com/*"]
-      },
-      "notification": {
-        "all": true
-      },
-      "globalShortcut": {
-        "all": true
-      },
-      "os": {
-        "all": true
-      },
-      "clipboard": {
-        "all": true,
-        "writeText": true,
-        "readText": true
-      },
-      "app": {
-        "all": false,
-        "hide": true,
-        "show": true
-      },
-      "path": {
-        "all": true
-      },
-      "protocol": {
-        "all": false,
-        "asset": false,
-        "assetScope": ["http://*/*", "https://*/*"]
-      }
+  "plugins": {
+    "http": {
+      "scope": [
+        "https://api.openai.com/*"
+      ]
     },
+    "updater": {
+      "endpoints": ["https://Talljack.github.io/dev-utils/install.json"]
+    }
+  },
+  "tauri": {
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
@@ -70,7 +30,10 @@
         "depends": []
       },
       "externalBin": [],
-      "icon": ["icons/icon_512x512.png", "icons/icon.icns"],
+      "icon": [
+        "icons/icon_512x512.png",
+        "icons/icon.icns"
+      ],
       "identifier": "com.dev-utils.desktop",
       "longDescription": "",
       "macOS": {
@@ -83,6 +46,10 @@
       "resources": [],
       "shortDescription": "Dev Utils",
       "targets": "all",
+      "updater": {
+        "active": true,
+        "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc5MEU0MkJFRjRDRTUwMzkKUldRNVVNNzB2a0lPZWNMR0dvd3R3UnB4RWszZXl0bGZ0RnNzQVRrck0ydThhUzUrejV6Q1d4OW8K"
+      },
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
@@ -90,13 +57,20 @@
       }
     },
     "security": {
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "http://*/*",
+          "https://*/*",
+          "$APP",
+          "$CONFIG"
+        ]
+      },
       "csp": null
     },
-    "updater": {
-      "active": true,
-      "dialog": true,
-      "endpoints": ["https://Talljack.github.io/dev-utils/install.json"],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc5MEU0MkJFRjRDRTUwMzkKUldRNVVNNzB2a0lPZWNMR0dvd3R3UnB4RWszZXl0bGZ0RnNzQVRrck0ydThhUzUrejV6Q1d4OW8K"
+    "trayIcon": {
+      "iconAsTemplate": true,
+      "iconPath": "icons/icon_512x512.png"
     },
     "windows": [
       {
@@ -106,10 +80,6 @@
         "title": "Dev Utils",
         "width": 800
       }
-    ],
-    "systemTray": {
-      "iconAsTemplate": true,
-      "iconPath": "icons/icon_512x512.png"
-    }
+    ]
   }
 }

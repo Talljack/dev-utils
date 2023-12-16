@@ -9,7 +9,11 @@ export default defineConfig({
   clearScreen: false,
   // Tauri expects a fixed port, fail if that port is not available
   server: {
-    strictPort: true
+    strictPort: true,
+    watch: {
+      // 3. tell vite to ignore watching `src-tauri`
+      ignored: ["**/src-tauri/**"],
+    }
   },
   // to access the Tauri environment variables set by the CLI with information about the current target
   envPrefix: [

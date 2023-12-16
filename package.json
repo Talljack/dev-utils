@@ -1,8 +1,9 @@
 {
   "name": "dev-utils",
   "version": "0.3.5",
+  "private": true,
   "type": "module",
-  "packageManager": "pnpm@8.12.0",
+  "packageManager": "pnpm@8.12.1",
   "scripts": {
     "dev:fe": "vite",
     "build:fe": "tsc && vite build",
@@ -28,7 +29,11 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
-    "@tauri-apps/api": "^1.5.1",
+    "@tauri-apps/api": "^2.0.0-alpha.12",
+    "@tauri-apps/plugin-clipboard-manager": "2.0.0-alpha.4",
+    "@tauri-apps/plugin-dialog": "2.0.0-alpha.4",
+    "@tauri-apps/plugin-fs": "2.0.0-alpha.4",
+    "@tauri-apps/plugin-shell": "^2.0.0-alpha.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "crypto-js": "^4.2.0",
@@ -56,7 +61,7 @@
   },
   "devDependencies": {
     "@actions/github": "^6.0.0",
-    "@tauri-apps/cli": "^1.5.7",
+    "@tauri-apps/cli": "2.0.0-alpha.18",
     "@tauri-release/cli": "^0.2.5",
     "@types/crypto-js": "^4.2.1",
     "@types/lodash-es": "^4.17.12",

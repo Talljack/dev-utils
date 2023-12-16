@@ -4,7 +4,7 @@ import type {
   MonacoEditorProps
 } from 'monaco-editor-component/react'
 import { MonacoEditor } from 'monaco-editor-component/react'
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import InputTip from './common/InputTip'
 
 interface Props {
@@ -18,6 +18,7 @@ interface Props {
   sampleValue?: string
   inputLabel?: string
   inputResult?: string
+  operationChildren?: ReactNode
 }
 
 const defaultOptions: MonacoEditorOptions = {
@@ -45,7 +46,8 @@ const CodeEditor: FC<Props> = ({
   height = '100%',
   sampleValue,
   inputLabel = 'Input:',
-  inputResult
+  inputResult,
+  operationChildren
 }) => {
   return (
     <div className="flex flex-col items-center flex-1 h-full">
@@ -55,7 +57,9 @@ const CodeEditor: FC<Props> = ({
         onValueChange={onChange}
         className="mb-4"
         inputLabel={inputLabel}
-      />
+      >
+        {operationChildren}
+      </InputTip>
       <div className="flex flex-1 w-full">
         <MonacoEditor
           className={`${className}`}

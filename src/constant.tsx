@@ -11,13 +11,13 @@ import UtilJsonToRust from '@/pages/utils/JsonToRust'
 import UtilJsonToToml from '@/pages/utils/JsonToToml'
 import UtilJsonToTypescript from '@/pages/utils/JsonToTypescript'
 import UtilJsonToYaml from '@/pages/utils/JsonToYaml'
+import UtilMarkdownFormatter from '@/pages/utils/MarkdownFormatter'
 import UtilScssFormatter from '@/pages/utils/ScssFormatter'
 import UtilSvgToTsx from '@/pages/utils/SvgToTsx'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
 import UtilTomlToJson from '@/pages/utils/TomlToJson'
 import UtilYamlToJson from '@/pages/utils/YamlToJson'
 import type { UtilItem } from '@/type'
-import React from 'react'
 export const utilMap: UtilItem[] = [
   {
     name: 'JSON Formatter/Validate',
@@ -68,6 +68,11 @@ export const utilMap: UtilItem[] = [
     name: 'SCSS Formatter',
     path: '/utils/scss-formatter',
     paramId: 'scss-formatter'
+  },
+  {
+    name: 'Markdown Formatter',
+    path: '/utils/markdown-formatter',
+    paramId: 'markdown-formatter'
   },
   {
     name: 'JSON Schema to TypeScript',
@@ -129,5 +134,6 @@ export const utilsIdPageMap = {
   'svg-to-tsx': <UtilSvgToTsx />,
   'yaml-to-json': <UtilYamlToJson />,
   'toml-to-json': <UtilTomlToJson />,
-  'scss-formatter': <UtilScssFormatter />
+  'scss-formatter': <UtilScssFormatter />,
+  'markdown-formatter': <UtilMarkdownFormatter />
 }
