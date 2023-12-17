@@ -12,6 +12,7 @@ import UtilJsonToToml from '@/pages/utils/JsonToToml'
 import UtilJsonToTypescript from '@/pages/utils/JsonToTypescript'
 import UtilJsonToYaml from '@/pages/utils/JsonToYaml'
 import UtilMarkdownFormatter from '@/pages/utils/MarkdownFormatter'
+import UtilMarkdownPreview from '@/pages/utils/MarkdownPreview'
 import UtilScssFormatter from '@/pages/utils/ScssFormatter'
 import UtilSvgToTsx from '@/pages/utils/SvgToTsx'
 import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
@@ -75,6 +76,11 @@ export const utilMap: UtilItem[] = [
     paramId: 'markdown-formatter'
   },
   {
+    name: 'Markdown Preview',
+    path: '/utils/markdown-preview',
+    paramId: 'markdown-preview'
+  },
+  {
     name: 'JSON Schema to TypeScript',
     path: '/utils/json-schema-to-typescript',
     paramId: 'json-schema-to-typescript'
@@ -135,5 +141,6 @@ export const utilsIdPageMap = {
   'yaml-to-json': <UtilYamlToJson />,
   'toml-to-json': <UtilTomlToJson />,
   'scss-formatter': <UtilScssFormatter />,
-  'markdown-formatter': <UtilMarkdownFormatter />
+  'markdown-formatter': <UtilMarkdownFormatter />,
+  'markdown-preview': <UtilMarkdownPreview />
 }
