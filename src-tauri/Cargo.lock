@@ -787,6 +787,7 @@ dependencies = [
  "tauri-plugin-fs",
  "tauri-plugin-shell",
  "tauri-runtime",
+ "tauri-runtime-wry",
 ]
 
 [[package]]
