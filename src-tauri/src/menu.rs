@@ -65,8 +65,6 @@ pub fn build_menu(handle: &AppHandle) -> Result<Menu<Wry<EventLoopMessage>>, tau
 
 }
 
-
-
 pub fn handler_menu(app: &AppHandle, event: MenuEvent) {
   // let window = Some(event.window());
   let window = app.get_window("main").unwrap();
