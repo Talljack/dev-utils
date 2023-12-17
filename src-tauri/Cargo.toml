@@ -20,6 +20,7 @@ tauri = { version = "2.0.0-alpha.18", features = [ "tray-icon", "protocol-asset"
 tauri-plugin-shell = "2.0.0-alpha.5"
 tauri-plugin-dialog = "2.0.0-alpha.5"
 tauri-runtime = "1.0.0-alpha.5"
+tauri-runtime-wry = "1.0.0-alpha.6"
 tauri-plugin-fs = "2.0.0-alpha.5"
 tauri-plugin-clipboard-manager = "2.0.0-alpha.5"
 
