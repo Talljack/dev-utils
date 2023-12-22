@@ -1,9 +1,9 @@
-import CodeEditor from '@/components/CodeEditor'
 import TextEditor from '@/components/TextEditor';
 import { debounce } from 'lodash-es'
 import type { FC } from 'react'
 import toml from 'toml';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import CodeViewer from '@/components/CodeViewer';
 
 const sampleValue = `firstName = "John"
 hobbies = ["football","video games"]
@@ -57,11 +57,12 @@ const TomlToJson: FC = () => {
           inputResult={inputResult}
           sampleValue={sampleValue}
         />
-        <CodeEditor
+        <CodeViewer
           code={formatOutput}
           options={{
             readOnly: true
           }}
+          showSpace={false}
           language="json"
         />
       </div>
