@@ -1,6 +1,7 @@
 import UtilBase64Decode from '@/pages/utils/Base64Decode'
 import UtilBase64Encode from '@/pages/utils/Base64Encode'
 import UtilColorConverter from '@/pages/utils/ColorConverter'
+import UtilCssBoxShadowGenerator from '@/pages/utils/CssBoxShadowGenerator'
 import UtilCssFormatter from '@/pages/utils/CssFormatter'
 import UtilHashGenerator from '@/pages/utils/HashGenerator'
 import UtilJSFormatter from '@/pages/utils/JSFormatter'
@@ -119,6 +120,11 @@ export const utilMap: UtilItem[] = [
     name: 'SVG to TSX',
     path: '/utils/svg-to-tsx',
     paramId: 'svg-to-tsx'
+  },
+  {
+    name: 'CSS Box Shadow Generator',
+    path: '/utils/css-box-shadow-generator',
+    paramId: 'css-box-shadow-generator'
   }
 ]
 
@@ -142,5 +148,6 @@ export const utilsIdPageMap = {
   'toml-to-json': <UtilTomlToJson />,
   'scss-formatter': <UtilScssFormatter />,
   'markdown-formatter': <UtilMarkdownFormatter />,
-  'markdown-preview': <UtilMarkdownPreview />
+  'markdown-preview': <UtilMarkdownPreview />,
+  'css-box-shadow-generator': <UtilCssBoxShadowGenerator />
 }
