@@ -20,6 +20,7 @@ import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
 import UtilTomlToJson from '@/pages/utils/TomlToJson'
 import UtilYamlToJson from '@/pages/utils/YamlToJson'
 import type { UtilItem } from '@/type'
+import HTMLToMarkdown from './pages/utils/HTMLToMarkdown'
 export const utilMap: UtilItem[] = [
   {
     name: 'JSON Formatter/Validate',
@@ -125,6 +126,11 @@ export const utilMap: UtilItem[] = [
     name: 'CSS Box Shadow Generator',
     path: '/utils/css-box-shadow-generator',
     paramId: 'css-box-shadow-generator'
+  },
+  {
+    name: 'HTML to Markdown',
+    path: '/utils/html-to-markdown',
+    paramId: 'html-to-markdown'
   }
 ]
 
@@ -149,5 +155,6 @@ export const utilsIdPageMap = {
   'scss-formatter': <UtilScssFormatter />,
   'markdown-formatter': <UtilMarkdownFormatter />,
   'markdown-preview': <UtilMarkdownPreview />,
-  'css-box-shadow-generator': <UtilCssBoxShadowGenerator />
+  'css-box-shadow-generator': <UtilCssBoxShadowGenerator />,
+  'html-to-markdown': <HTMLToMarkdown />
 }
