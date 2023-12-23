@@ -14,6 +14,7 @@ export interface InputTipProps extends PropsWithChildren {
   inputLabel?: string
   showOperation?: boolean
   showCopy?: boolean
+  showClipboard?: boolean
 }
 const InputTip: FC<InputTipProps> = ({
   onValueChange,
@@ -24,6 +25,7 @@ const InputTip: FC<InputTipProps> = ({
   value,
   showOperation = true,
   showCopy = false,
+  showClipboard = true,
   children,
 }) => {
   const getClipboardText = async () => {
@@ -35,7 +37,11 @@ const InputTip: FC<InputTipProps> = ({
       <Label className="text-lg font-bold ">{inputLabel}</Label>
       <div className={`flex items-center gap-2 operation ${showOperation ? 'visible' : 'invisible'}`}>
         {children}
-        <Button onClick={getClipboardText}>Clipboard</Button>
+        {
+          showClipboard && (
+            <Button onClick={getClipboardText}>Clipboard</Button>
+          )
+        }
         {showSample && (
           <Button onClick={() => onValueChange?.(sampleValue)}>Sample</Button>
         )}
