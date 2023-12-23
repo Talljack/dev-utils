@@ -20,7 +20,8 @@ import UtilTimestampConverter from '@/pages/utils/TimestampConverter'
 import UtilTomlToJson from '@/pages/utils/TomlToJson'
 import UtilYamlToJson from '@/pages/utils/YamlToJson'
 import type { UtilItem } from '@/type'
-import HTMLToMarkdown from './pages/utils/HTMLToMarkdown'
+import UtilHTMLToMarkdown from './pages/utils/HTMLToMarkdown'
+import UtilUUIDGenerator from './pages/utils/UUIDGenerator'
 export const utilMap: UtilItem[] = [
   {
     name: 'JSON Formatter/Validate',
@@ -131,6 +132,11 @@ export const utilMap: UtilItem[] = [
     name: 'HTML to Markdown',
     path: '/utils/html-to-markdown',
     paramId: 'html-to-markdown'
+  },
+  {
+    name: 'UUID Generator',
+    path: '/utils/uuid-generator',
+    paramId: 'uuid-generator'
   }
 ]
 
@@ -156,5 +162,6 @@ export const utilsIdPageMap = {
   'markdown-formatter': <UtilMarkdownFormatter />,
   'markdown-preview': <UtilMarkdownPreview />,
   'css-box-shadow-generator': <UtilCssBoxShadowGenerator />,
-  'html-to-markdown': <HTMLToMarkdown />
+  'html-to-markdown': <UtilHTMLToMarkdown />,
+  'uuid-generator': <UtilUUIDGenerator />
 }
