@@ -65,6 +65,9 @@ dependencies:
   '@tauri-apps/plugin-shell':
     specifier: ^2.0.0-alpha.3
     version: 2.0.0-alpha.4
+  '@wordpress/wordcount':
+    specifier: ^3.48.0
+    version: 3.48.0
   bytemd:
     specifier: ^1.21.0
     version: 1.21.0
@@ -2631,6 +2634,13 @@ packages:
 
   /@vue/shared@3.3.13:
     resolution: {integrity: sha512-/zYUwiHD8j7gKx2argXEMCUXVST6q/21DFU0sTfNX0URJroCe3b1UF6vLJ3lQDfLNIiiRl2ONp7Nh5UVWS6QnA==}
+    dev: false
+
+  /@wordpress/wordcount@3.48.0:
+    resolution: {integrity: sha512-AophIntlbTSpzsxHsfnN6Ajxu9aQ7qiFuXmMZwv7f/IcB/tEAGQ7WPNdABeWY8EalDPWGXQeLFTLJkj0wy/jrA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@babel/runtime': 7.23.6
     dev: false
 
   /@xkit/popover@0.1.24(react@18.2.0):

@@ -21,6 +21,7 @@ import UtilTomlToJson from '@/pages/utils/TomlToJson'
 import UtilYamlToJson from '@/pages/utils/YamlToJson'
 import type { UtilItem } from '@/type'
 import UtilHTMLToMarkdown from './pages/utils/HTMLToMarkdown'
+import UtilTextCounter from './pages/utils/TextCounter'
 import UtilUUIDGenerator from './pages/utils/UUIDGenerator'
 export const utilMap: UtilItem[] = [
   {
@@ -137,6 +138,11 @@ export const utilMap: UtilItem[] = [
     name: 'UUID Generator',
     path: '/utils/uuid-generator',
     paramId: 'uuid-generator'
+  },
+  {
+    name: 'Text Counter',
+    path: '/utils/text-counter',
+    paramId: 'text-counter'
   }
 ]
 
@@ -163,5 +169,6 @@ export const utilsIdPageMap = {
   'markdown-preview': <UtilMarkdownPreview />,
   'css-box-shadow-generator': <UtilCssBoxShadowGenerator />,
   'html-to-markdown': <UtilHTMLToMarkdown />,
-  'uuid-generator': <UtilUUIDGenerator />
+  'uuid-generator': <UtilUUIDGenerator />,
+  'text-counter': <UtilTextCounter />
 }
