@@ -21,6 +21,7 @@ import UtilTomlToJson from '@/pages/utils/TomlToJson'
 import UtilYamlToJson from '@/pages/utils/YamlToJson'
 import type { UtilItem } from '@/type'
 import UtilHTMLToMarkdown from './pages/utils/HTMLToMarkdown'
+import UtilKeyboardEvent from './pages/utils/KeyboardEvent'
 import UtilTextCounter from './pages/utils/TextCounter'
 import UtilUUIDGenerator from './pages/utils/UUIDGenerator'
 export const utilMap: UtilItem[] = [
@@ -143,6 +144,11 @@ export const utilMap: UtilItem[] = [
     name: 'Text Counter',
     path: '/utils/text-counter',
     paramId: 'text-counter'
+  },
+  {
+    name: 'Keyboard Event',
+    path: '/utils/keyboard-event',
+    paramId: 'keyboard-event'
   }
 ]
 
@@ -170,5 +176,6 @@ export const utilsIdPageMap = {
   'css-box-shadow-generator': <UtilCssBoxShadowGenerator />,
   'html-to-markdown': <UtilHTMLToMarkdown />,
   'uuid-generator': <UtilUUIDGenerator />,
-  'text-counter': <UtilTextCounter />
+  'text-counter': <UtilTextCounter />,
+  'keyboard-event': <UtilKeyboardEvent />
 }
