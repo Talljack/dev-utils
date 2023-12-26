@@ -47,7 +47,7 @@ jobs:
           node-version: 18
 
       - name: Install deps
-        run: pnpm install --force-lockfile
+        run: pnpm install
 
       - name: 'Setup Rust'
         uses: dtolnay/rust-toolchain@stable
@@ -159,7 +159,7 @@ jobs:
           node-version: 18
 
       - name: Install deps
-        run: pnpm install --force-lockfile
+        run: pnpm install
 
       - name: Updater JSON
         run: pnpm run updater --token=${{ secrets.GITHUB_TOKEN }}
