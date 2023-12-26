@@ -74,8 +74,9 @@
     },
     "windows": [
       {
-        "fullscreen": true,
+        "fullscreen": false,
         "height": 600,
+        "closable": true,
         "resizable": true,
         "title": "Dev Utils",
         "width": 800
