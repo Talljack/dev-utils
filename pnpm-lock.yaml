@@ -198,7 +198,7 @@ devDependencies:
     version: 6.15.0(eslint@8.55.0)(typescript@5.3.3)
   '@vitejs/plugin-react':
     specifier: ^4.2.1
-    version: 4.2.1(vite@5.0.8)
+    version: 4.2.1(vite@5.0.10)
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.32)
@@ -239,17 +239,14 @@ devDependencies:
     specifier: ^5.3.3
     version: 5.3.3
   vite:
-    specifier: ^5.0.7
-    version: 5.0.8(@types/node@20.10.5)
-  vite-plugin-monaco-editor:
-    specifier: ^1.1.0
-    version: 1.1.0(monaco-editor@0.45.0)
+    specifier: ^5.0.10
+    version: 5.0.10(@types/node@20.10.5)
   vite-plugin-svgr:
     specifier: ^4.2.0
-    version: 4.2.0(typescript@5.3.3)(vite@5.0.8)
+    version: 4.2.0(typescript@5.3.3)(vite@5.0.10)
   vite-tsconfig-paths:
     specifier: ^4.2.2
-    version: 4.2.2(typescript@5.3.3)(vite@5.0.8)
+    version: 4.2.2(typescript@5.3.3)(vite@5.0.10)
 
 packages:
 
@@ -2544,7 +2541,7 @@ packages:
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  /@vitejs/plugin-react@4.2.1(vite@5.0.8):
+  /@vitejs/plugin-react@4.2.1(vite@5.0.10):
     resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2555,7 +2552,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.6)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.0.8(@types/node@20.10.5)
+      vite: 5.0.10(@types/node@20.10.5)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5491,6 +5488,7 @@ packages:
 
   /monaco-editor@0.45.0:
     resolution: {integrity: sha512-mjv1G1ZzfEE3k9HZN0dQ2olMdwIfaeAAjFiwNprLfYNRSz7ctv9XuCT7gPtBGrMUeV1/iZzYKj17Khu1hxoHOA==}
+    dev: false
 
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -7041,15 +7039,7 @@ packages:
       vfile-message: 3.1.4
     dev: false
 
-  /vite-plugin-monaco-editor@1.1.0(monaco-editor@0.45.0):
-    resolution: {integrity: sha512-IvtUqZotrRoVqwT0PBBDIZPNraya3BxN/bfcNfnxZ5rkJiGcNtO5eAOWWSgT7zullIAEqQwxMU83yL9J5k7gww==}
-    peerDependencies:
-      monaco-editor: '>=0.33.0'
-    dependencies:
-      monaco-editor: 0.45.0
-    dev: true
-
-  /vite-plugin-svgr@4.2.0(typescript@5.3.3)(vite@5.0.8):
+  /vite-plugin-svgr@4.2.0(typescript@5.3.3)(vite@5.0.10):
     resolution: {integrity: sha512-SC7+FfVtNQk7So0XMjrrtLAbEC8qjFPifyD7+fs/E6aaNdVde6umlVVh0QuwDLdOMu7vp5RiGFsB70nj5yo0XA==}
     peerDependencies:
       vite: ^2.6.0 || 3 || 4 || 5
@@ -7057,14 +7047,14 @@ packages:
       '@rollup/pluginutils': 5.1.0
       '@svgr/core': 8.1.0(typescript@5.3.3)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0)
-      vite: 5.0.8(@types/node@20.10.5)
+      vite: 5.0.10(@types/node@20.10.5)
     transitivePeerDependencies:
       - rollup
       - supports-color
       - typescript
     dev: true
 
-  /vite-tsconfig-paths@4.2.2(typescript@5.3.3)(vite@5.0.8):
+  /vite-tsconfig-paths@4.2.2(typescript@5.3.3)(vite@5.0.10):
     resolution: {integrity: sha512-dq0FjyxHHDnp0uS3P12WEOX2W7NeuLzX9AWP38D7Zw2CTbFErapwQVlCiT5DMJcVWKQ1MMdTe92PZl/rBQ7qcw==}
     peerDependencies:
       vite: '*'
@@ -7075,14 +7065,14 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 2.1.2(typescript@5.3.3)
-      vite: 5.0.8(@types/node@20.10.5)
+      vite: 5.0.10(@types/node@20.10.5)
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /vite@5.0.8(@types/node@20.10.5):
-    resolution: {integrity: sha512-jYMALd8aeqR3yS9xlHd0OzQJndS9fH5ylVgWdB+pxTwxLKdO1pgC5Dlb398BUxpfaBxa4M9oT7j1g503Gaj5IQ==}
+  /vite@5.0.10(@types/node@20.10.5):
+    resolution: {integrity: sha512-2P8J7WWgmc355HUMlFrwofacvr98DAjoE52BfdbwQtyLH06XKwaL/FMnmKM2crF0iX4MpmMKoDlNCB1ok7zHCw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
