@@ -8,6 +8,8 @@
     "dev:fe": "vite",
     "build:fe": "tsc && vite build",
     "serve": "vite preview",
+    "dev:ios": "tauri ios dev",
+    "build:ios": "tauri ios build",
     "tauri": "tauri",
     "dev": "tauri dev",
     "build": "tauri build",

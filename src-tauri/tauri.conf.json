@@ -34,7 +34,7 @@
         "icons/icon_512x512.png",
         "icons/icon.icns"
       ],
-      "identifier": "com.dev-utils.desktop",
+      "identifier": "com.devUtils.desktop",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -42,6 +42,9 @@
         "frameworks": [],
         "providerShortName": null,
         "signingIdentity": null
+      },
+      "iOS": {
+        "developmentTeam": "qrez-kvve-aymi-rgdg"
       },
       "resources": [],
       "shortDescription": "Dev Utils",
